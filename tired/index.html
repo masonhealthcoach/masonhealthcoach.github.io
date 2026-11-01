@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Why Am I Always Tired?</title>
+<title>Wired, Burnt Out or Flat?</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: one narrow column, one screen at a time: intro → 8 quick questions → energy type + score bars + 3 fixes + DM */
+/* Layout: one narrow column, one screen at a time: intro → 10 quick questions → email → energy type + score bars + 3 fixes + DM */
 :root{
   --bg:#EDF0EA; --surface:#F8FAF6; --fg:#16211B; --muted:#56635B; --line:#CBD3CA;
   --gum:#1F4D3A; --gum-ink:#F3F7F2; --ochre:#B9822A;
@@ -82,6 +82,11 @@ ol.tips span span{color:var(--muted);font-size:15px}
 .cta .small{color:var(--gum-ink);opacity:.8}
 .foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.field input{font:500 17px/1.3 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;min-height:56px;width:100%}
+.field input:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-color:var(--gum)}
+.err{color:var(--hot);font-size:14px;font-weight:600}
 .types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mix{display:flex;flex-direction:column;gap:10px}
 .mix .row{display:grid;grid-template-columns:130px 1fr 28px;gap:10px;align-items:center;font-size:14px;font-weight:600}
@@ -94,14 +99,14 @@ ol.tips span span{color:var(--muted);font-size:15px}
 <main class="wrap" id="app" aria-live="polite">
   <section class="stack" style="gap:22px">
     <span class="brand">Mason's Quiz</span>
-    <span class="eyebrow">8 questions · under a minute</span>
-    <h1>Why am I <em>always tired?</em></h1>
-    <p class="lede">Coffee's not working, sleep's not fixing it, and you're running on fumes. There are four ways people end up flat. Find out which one you are.</p>
+    <span class="eyebrow">10 questions · 60 seconds</span>
+    <h1>Wired, burnt out or <em>just flat?</em></h1>
+    <p class="lede">Coffee's stopped working and a weekend off doesn't fix it. There are four reasons people are always tired. Find out which one is yours.</p>
     <div class="types">
-      <div class="pedal"><strong style="color:var(--hot)">Wired &amp; Tired</strong><small>Flat all day, wide awake at night.</small></div>
-      <div class="pedal"><strong style="color:var(--ochre)">Crash &amp; Burner</strong><small>Fine in the morning, dead by 2pm.</small></div>
-      <div class="pedal"><strong style="color:var(--calm)">Running on Empty</strong><small>Wrecked from the moment you wake up.</small></div>
-      <div class="pedal"><strong style="color:var(--gum)">Slow Burner</strong><small>Heavy, foggy, bloated, hard to get going.</small></div>
+      <div class="pedal"><strong style="color:var(--hot)">Wired</strong><small>Tired all day, wide awake at night.</small></div>
+      <div class="pedal"><strong style="color:var(--ochre)">Crashing</strong><small>Fine in the morning, dead by 2pm.</small></div>
+      <div class="pedal"><strong style="color:var(--calm)">Burnt Out</strong><small>Wrecked from the moment you wake up.</small></div>
+      <div class="pedal"><strong style="color:var(--gum)">Flat</strong><small>Heavy, foggy, bloated, hard to get going.</small></div>
     </div>
     <button class="btn" id="start" type="button">Find my type →</button>
     <p class="foot">By Mason · Holistic lifestyle coach · <a href="../" style="color:inherit">About me</a></p>
@@ -110,7 +115,9 @@ ol.tips span span{color:var(--muted);font-size:15px}
 
 <script>
 const IG = "mason_havenstein_wellness";
-// W = Wired & Tired, C = Crash & Burner, E = Running on Empty, S = Slow Burner
+// Paste your Web3Forms access key here (free at web3forms.com). Leave empty and the quiz skips sending.
+const WEB3FORMS_KEY = "";
+// W = Wired, C = Crashing, E = Burnt Out, S = Flat
 const Q = [
   {q:"How do you feel when you first wake up?", a:[
     ["Tired, but I perk up later in the day",{W:2}],
@@ -151,29 +158,39 @@ const Q = [
     ["A few times a year, usually after a big stretch",{W:1,E:1}],
     ["Not often",{C:1}],
     ["All the time, I catch everything",{E:2}],
-    ["Not often, but I always feel a bit off",{S:2}]]}
+    ["Not often, but I always feel a bit off",{S:2}]]},
+  {q:"How's your mood most days?", a:[
+    ["Edgy, on, can't switch off",{W:2}],
+    ["Good, until I get hungry and snappy",{C:2}],
+    ["Flat, nothing really excites me",{E:2}],
+    ["Low and foggy, like I'm in slow motion",{S:2}]]},
+  {q:"What are you craving most?", a:[
+    ["More coffee, anything to keep going",{W:2}],
+    ["Something sweet in the arvo",{C:2}],
+    ["Salty food and energy drinks",{E:2}],
+    ["Bread, pasta, comfort food",{S:2}]]}
 ];
 
 const T = {
-  W:{name:"Wired & Tired", color:"var(--hot)", word:"WIRED",
+  W:{name:"Wired", color:"var(--hot)", word:"WIRED",
     line:"Your gas pedal's stuck down.",
     what:"Your body's running on stress hormones. It thinks it's under pressure all day, so it never fully switches into rest mode. That's why you drag through the day and then can't shut your brain off at night. More coffee just adds fuel to the fire.",
     fixes:[["Last coffee before 12pm","Caffeine hangs around for 8 to 10 hours. Your arvo can is still in your system at midnight."],
            ["Phone out of the bedroom","Charge it in the kitchen. Scrolling in bed keeps your brain switched on."],
            ["Longer breath out than in","In for 4 through the nose, out for 8. Five minutes in bed. The long exhale is your brake pedal."]]},
-  C:{name:"Crash & Burner", color:"var(--ochre)", word:"CRASH",
+  C:{name:"Crashing", color:"var(--ochre)", word:"CRASH",
     line:"You're riding a sugar rollercoaster.",
     what:"Your energy goes up and down with your blood sugar. Skipping breakfast, running on coffee and grabbing something sweet sends it up, then it drops hard, usually around 2pm. Every crash feels like you need a nap or another sugar hit.",
     fixes:[["Eat breakfast, a real one","A smoothie with protein, berries and a healthy fat, sipped over the morning. Coffee is not breakfast."],
            ["Protein and veg at lunch","Load up on protein and greens, and go easy on bread and pastries. That's what stops the 2pm crash."],
            ["10-minute walk after meals","Walking after you eat helps your body use the sugar instead of spiking and crashing."]]},
-  E:{name:"Running on Empty", color:"var(--calm)", word:"EMPTY",
+  E:{name:"Burnt Out", color:"var(--calm)", word:"BURNT",
     line:"Your tank's on zero.",
     what:"You've been pushing hard for so long your body's got nothing left. When you're this flat, smashing yourself at the gym or living on energy drinks just digs the hole deeper. You need to put energy back in before you spend any more.",
     fixes:[["Walk instead of smashing it","For the next few weeks swap hard sessions for walks. You'll build back up, but recovery comes first."],
            ["In bed by 10pm","The hours before midnight are when your body does the most repair. Guard them."],
            ["Don't skip carbs","Sweet potato, rice or oats with dinner. A run-down body needs fuel to rebuild, not another diet."]]},
-  S:{name:"Slow Burner", color:"var(--gum)", word:"SLOW",
+  S:{name:"Flat", color:"var(--gum)", word:"FLAT",
     line:"Your system's clogged up.",
     what:"Your body's working overtime just to digest and clear what's going in. Heavy meals, processed food, booze and a sluggish gut leave you foggy, bloated and slow, even when you sleep plenty. It's like running a motor on dirty oil.",
     fixes:[["Lighter breakfast","Swap the big feed for a smoothie. Your gut gets a break and you'll feel lighter by mid-morning."],
@@ -203,7 +220,7 @@ function renderQ(){
     </section>`;
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
     picks[step]=+b.dataset.i; b.classList.add("picked");
-    setTimeout(()=>{ step++; step<Q.length?renderQ():renderResult(); window.scrollTo(0,0) },180);
+    setTimeout(()=>{ step++; step<Q.length?renderQ():renderGate(); window.scrollTo(0,0) },180);
   });
   document.getElementById("back").onclick=()=>{ if(step>0){step--;renderQ()} };
 }
@@ -214,9 +231,52 @@ function score(){
   return s;
 }
 
-function renderResult(){
+function topType(s){ return ORDER.reduce((best,k)=> s[k]>s[best]?k:best, ORDER[0]); }
+
+function renderGate(){
+  app.innerHTML = `
+    <section class="stack" style="gap:22px">
+      <span class="brand">Mason's Quiz</span>
+      <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
+      <span class="eyebrow">Done. Your result is ready</span>
+      <h2>Where should I send your results?</h2>
+      <p>You'll see your energy type straight away, and I'll email you a copy plus a few extra tips for your type.</p>
+      <form class="stack" id="gate" novalidate>
+        <div class="field"><label for="fname">First name</label><input id="fname" name="name" autocomplete="given-name" required></div>
+        <div class="field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <p class="err" id="gerr" hidden></p>
+        <button class="btn" type="submit" id="gsend">Show my results →</button>
+        <p class="small">By continuing you agree to get emails from Mason about energy and health. No spam, unsubscribe anytime.</p>
+      </form>
+      <button class="back" type="button" id="back">← Back to the questions</button>
+    </section>`;
+  document.getElementById("back").onclick=()=>{ step=Q.length-1; renderQ(); };
+  document.getElementById("gate").onsubmit=async e=>{
+    e.preventDefault();
+    const name=document.getElementById("fname").value.trim();
+    const email=document.getElementById("femail").value.trim();
+    const err=document.getElementById("gerr");
+    if(!name){err.textContent="Pop your first name in.";err.hidden=false;return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent="That email doesn't look right. Check it and try again.";err.hidden=false;return}
+    err.hidden=true;
+    const btn=document.getElementById("gsend"); btn.disabled=true; btn.textContent="Loading your results…";
+    const s=score(), t=T[topType(s)];
+    if(WEB3FORMS_KEY){
+      const answers=picks.map((p,i)=>`${i+1}. ${Q[i].q} → ${Q[i].a[p][0]}`).join("\n");
+      try{
+        await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+          body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`New quiz lead: ${name} (${t.name})`,from_name:"Mason's Energy Quiz",
+            name,email,energy_type:t.name,scores:`Wired ${s.W} · Crashing ${s.C} · Burnt Out ${s.E} · Flat ${s.S}`,answers})});
+      }catch(_){}
+    }
+    renderResult(name);
+    window.scrollTo(0,0);
+  };
+}
+
+function renderResult(name){
   const s = score();
-  const top = ORDER.reduce((best,k)=> s[k]>s[best]?k:best, ORDER[0]);
+  const top = topType(s);
   const t = T[top];
   const total = Object.values(s).reduce((a,b)=>a+b,0) || 1;
   const mix = ORDER.slice().sort((a,b)=>s[b]-s[a]).map(k=>
@@ -225,7 +285,7 @@ function renderResult(){
     <section class="stack" style="gap:28px">
       <span class="brand">Mason's Quiz</span>
       <div class="stack" style="gap:10px">
-        <span class="eyebrow">Your energy type</span>
+        <span class="eyebrow">${name?esc(name)+", your":"Your"} energy type</span>
         <p class="type" style="color:${t.color}">${t.name}</p>
         <h2>${t.line}</h2>
       </div>
