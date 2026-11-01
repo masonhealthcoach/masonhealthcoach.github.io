@@ -11,17 +11,17 @@
 <style>
 /* Layout: one phone-first column, read top to bottom like a trail log: hero → story → what I work on → who it's for → training → next step */
 :root{
-  --bg:#EDF0EA; --surface:#F8FAF6; --fg:#16211B; --muted:#56635B; --line:#CBD3CA;
-  --gum:#1F4D3A; --gum-ink:#F3F7F2; --ochre:#B9822A;
+  --bg:#F2ECE1; --surface:#FBF8F2; --fg:#231E19; --muted:#6B6157; --line:#DCD2C2;
+  --gum:#4A5A2E; --gum-ink:#FBF8F2; --ochre:#7E2232;
   --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
   --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
-  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }}
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A; color-scheme:dark }}
 :root[data-theme="dark"]{
-  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
-  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A; color-scheme:dark }
 
 *{box-sizing:border-box} html,body{margin:0} [hidden]{display:none!important}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
@@ -72,19 +72,20 @@ body{padding-top:0}
 .nav .brand{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;text-decoration:none;color:var(--fg);letter-spacing:.02em}
 .nav .links{display:flex;gap:16px;font-size:15px;font-weight:600}
 .nav .links a{color:var(--muted);text-decoration:none}.nav .links a:hover{color:var(--fg)}
-.hero{border-radius:24px;overflow:hidden;color:#F3F7F2;background:#13281E;display:flex;flex-direction:column}
+.hero{border-radius:24px;overflow:hidden;color:#FBF8F2;background:#2A2418;display:flex;flex-direction:column}
 .hero .pic{position:relative;aspect-ratio:4/4.3;max-height:560px}
 .hero .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
-.hero .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,40,30,0) 55%,#13281E 100%)}
+.hero .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,36,24,0) 55%,#2A2418 100%)}
 .hero .in{position:relative;margin-top:-64px;padding:0 20px 22px;display:flex;flex-direction:column;gap:14px}
 .hero .eyebrow{color:rgba(243,247,242,.8)}
-.hero h1 em{color:#E2B456}
+.hero h1 em{color:#D9A86A}
 .hero .lede{font-size:18px}
-.hero .btn{background:#F3F7F2;color:#1F4D3A}
-.hero .btn.ghost{background:transparent;color:#F3F7F2;border-color:rgba(243,247,242,.6)}
+.hero .btn{background:#FBF8F2;color:#4A5A2E}
+.hero .btn.ghost{background:transparent;color:#FBF8F2;border-color:rgba(243,247,242,.6)}
 .hero .who span{border-color:rgba(243,247,242,.45)}
 .photo{border-radius:20px;overflow:hidden;margin:0}
 .photo img{display:block;width:100%;height:auto}
+.photo.art{background:#EFEAD1;margin-bottom:-24px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pair img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px}
 .cards{display:flex;flex-direction:column;gap:12px}
@@ -97,13 +98,13 @@ a.card:hover{border-color:var(--gum)}
 .phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .phase{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 10px;min-width:0}
 .phase small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.phase strong{display:block;font-family:var(--display);font-weight:900;font-size:clamp(17px,4.9vw,24px);text-transform:uppercase;line-height:1.05}
+.phase strong{display:block;font-family:var(--display);font-weight:900;font-size:clamp(16px,4.4vw,24px);text-transform:uppercase;line-height:1.05}
 .price{display:flex;align-items:baseline;gap:8px}.price b{font-family:var(--display);font-size:52px;font-weight:900;line-height:1}
-.cta.bush{position:relative;overflow:hidden;background:#13281E}
+.cta.bush{position:relative;overflow:hidden;background:#2A2418}
 .cta.bush img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}
 .cta.bush > *:not(img){position:relative}
-.cta.bush, .cta.bush h2{color:#F3F7F2}
-.cta.bush .btn{background:#F3F7F2;color:#1F4D3A}.cta.bush .btn.ghost{background:transparent;color:#F3F7F2}
+.cta.bush, .cta.bush h2{color:#FBF8F2}
+.cta.bush .btn{background:#FBF8F2;color:#4A5A2E}.cta.bush .btn.ghost{background:transparent;color:#FBF8F2}
 </style>
 
 </head><body>
@@ -159,9 +160,11 @@ a.card:hover{border-color:var(--gum)}
   </section>
 
   <div class="pair">
-    <img src="img/dogs-grass.jpg" alt="Mason with his two dogs on the grass" loading="lazy">
+    <img src="img/hat-bush.jpg" alt="Mason in his leather bush hat out in the bush" loading="lazy">
     <img src="img/kitchen.jpg" alt="Mason holding his dog in the kitchen" loading="lazy">
   </div>
+
+  <figure class="photo art"><img src="img/nature-pill.jpg" alt="Illustration of a giant capsule filled with vegetables, fruit, sun and sea, with a doctor looking up at it" loading="lazy"></figure>
 
   <section>
     <span class="eyebrow">1:1 coaching</span>
@@ -188,8 +191,7 @@ a.card:hover{border-color:var(--gum)}
   </section>
 
   <section class="cta bush">
-    <img src="img/bush.jpg" alt="" loading="lazy">
-    <span class="eyebrow" style="color:#F3F7F2;opacity:.8">Start here</span>
+    <span class="eyebrow" style="color:#FBF8F2;opacity:.8">Start here</span>
     <h2>Find out why you're flat</h2>
     <p>Ten questions. You get your energy type and three things to change this week.</p>
     <a class="btn" href="tired/">Take the quiz →</a>
