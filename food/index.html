@@ -115,17 +115,17 @@ ol.tips span span{color:var(--muted);font-size:15px}
     <h1>What's your <em>food type?</em></h1>
     <p class="lede">The same diet that makes your mate lean and full of energy can leave you bloated and flat. Your body type decides what fuels you. Find out which one you are.</p>
     <div class="types">
-      <div class="pedal"><strong style="color:var(--calm)">The Wolf</strong><small>Lean, quick, runs hot and cold. Burns out fast.</small></div>
-      <div class="pedal"><strong style="color:var(--hot)">The Lion</strong><small>Driven, intense, runs hot. Hangry if a meal's late.</small></div>
-      <div class="pedal"><strong style="color:var(--gum)">The Bear</strong><small>Strong, steady, slow to start. Holds weight easily.</small></div>
-      <div class="pedal"><strong style="color:var(--ochre)">+ Your plan</strong><small>Lose, maintain or gain: the plate that suits you.</small></div>
+      <div class="pedal"><strong style="color:var(--gum)">Your type</strong><small>The body type that decides what fuels you.</small></div>
+      <div class="pedal"><strong style="color:var(--hot)">Eat more</strong><small>The foods that suit your body best.</small></div>
+      <div class="pedal"><strong style="color:var(--calm)">Go easy on</strong><small>The foods that drag you down.</small></div>
+      <div class="pedal"><strong style="color:var(--ochre)">Your plate</strong><small>Lose, maintain or gain: the plan for your goal.</small></div>
     </div>
     <button class="btn" id="start" type="button">Find my type →</button>
     <p class="foot">By Mason · Holistic lifestyle coach · Based on the Integrative Health Practitioner teachings of Dr Stephen Cabral · <a href="../" style="color:inherit">Home</a></p>
   </section>
 </main>
 <script>
-// V = Wolf, P = Lion, K = Bear (built on body-type eating from Dr Stephen Cabral's IHP course)
+// V = Air Type, P = Fire Type, K = Earth Type (built on body-type eating from Dr Stephen Cabral's IHP course)
 const Q = [
   {q:"How would you describe your build?", a:[
     ["Lean and wiry, hard to put on size",{V:2}],
@@ -173,15 +173,15 @@ const Q = [
     ["Put on weight and size",{},"gain"]]}
 ];
 const T = {
-  V:{name:"The Wolf", color:"var(--calm)", word:"WOLF", line:"Built light and quick. You burn through fuel fast.",
+  V:{name:"Air Type", color:"var(--calm)", word:"AIR", line:"Built light and quick. You burn through fuel fast.",
     what:"You've got a fast, restless system. Your energy comes in bursts, your gut is sensitive, and you feel the cold. Strict diets, skipped meals, cold salads and too much coffee knock you around more than anyone. You need warmth, regularity and grounding food.",
     more:["Warm, cooked meals: stews, soups, curries","Sweet potato, rice, oats and root veg","Healthy fats: ghee, olive oil, avocado","Meals at the same times every day"],
     less:["Cold, raw salads and iced drinks","Skipping meals or long fasts","Coffee on an empty stomach","Dry, crunchy snack food"]},
-  P:{name:"The Lion", color:"var(--hot)", word:"LION", line:"Built hot and driven. Your fire needs the right fuel.",
+  P:{name:"Fire Type", color:"var(--hot)", word:"FIRE", line:"Built hot and driven. Your fire needs the right fuel.",
     what:"You've got a strong engine and a sharp appetite. You digest well and push hard, but you run hot, and when you're out of balance it shows up as heartburn, irritability, rashes or burnout from going flat out. Cooling, steady food keeps your fire working for you instead of burning you up.",
     more:["Leafy greens, cucumber, zucchini, salads","Sweet fruits: melon, berries, pears","Coconut, olive oil, avocado","Never let a meal run late"],
     less:["Chilli and very spicy food","Alcohol, especially beer and spirits","Fried, oily and greasy food","Too much coffee and sour food"]},
-  K:{name:"The Bear", color:"var(--gum)", word:"BEAR", line:"Built strong and steady. Your engine just runs slow.",
+  K:{name:"Earth Type", color:"var(--gum)", word:"EARTH", line:"Built strong and steady. Your engine just runs slow.",
     what:"You've got strength, stamina and a calm nature, but your metabolism is slow. You hold weight and fluid easily, feel heavy after big meals and take a while to get going in the morning. Light, warm, spiced food and moving your body every day fire you up.",
     more:["Loads of veg, lightly cooked","Ginger, pepper, turmeric and warming spices","Berries and lighter fruits","Lean protein and legumes"],
     less:["Bread, pasta and heavy starch at night","Dairy, sweets and fried food","Eating late (after 6 to 7pm)","Snacking between meals"]}
@@ -242,7 +242,7 @@ function renderGate(){
       <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
       <span class="eyebrow">Done. Your result is ready</span>
       <h2>Where should I send your results?</h2>
-      <p>You'll see your food type and plan straight away, and I'll email you a copy plus a few extra tips for your type.</p>
+      <p>You'll see your body type and plan straight away, and I'll email you a copy plus a few extra tips for your type.</p>
       <form class="stack" id="gate" novalidate>
         <div class="field"><label for="fname">First name</label><input id="fname" name="name" autocomplete="given-name" required></div>
         <div class="field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" inputmode="email" required></div>
@@ -267,7 +267,7 @@ function renderGate(){
       const answers=picks.map((p,i)=>`${i+1}. ${Q[i].q} → ${Q[i].a[p][0]}`).join("\n");
       try{ await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
         body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`New food quiz lead: ${name} (${t.name}, ${g})`,from_name:"Mason's Food Type Quiz",
-          name,email,food_type:t.name,goal:g,scores:`Wolf ${s.V} · Lion ${s.P} · Bear ${s.K}`,answers})}); }catch(_){}
+          name,email,food_type:t.name,goal:g,scores:`Air ${s.V} · Fire ${s.P} · Earth ${s.K}`,answers})}); }catch(_){}
     }
     renderResult(name);
     window.scrollTo(0,0);
@@ -283,7 +283,7 @@ function renderResult(name){
     <section class="stack" style="gap:28px">
       <span class="brand">Mason's Quiz</span>
       <div class="stack" style="gap:10px">
-        <span class="eyebrow">${name?esc(name)+", your":"Your"} food type</span>
+        <span class="eyebrow">${name?esc(name)+", your":"Your"} body type</span>
         <p class="type" style="color:${t.color}">${t.name}</p>
         <h2>${t.line}</h2>
       </div>
