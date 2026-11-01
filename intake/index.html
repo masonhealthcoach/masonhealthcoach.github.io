@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Intake form for 1:1 energy coaching with Mason.">
+<title>Coaching Intake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+
+:root{
+  --bg:#EDF0EA; --surface:#F8FAF6; --fg:#16211B; --muted:#56635B; --line:#CBD3CA;
+  --gum:#1F4D3A; --gum-ink:#F3F7F2; --ochre:#B9822A;
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }
+
+*{box-sizing:border-box} html,body{margin:0} [hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:clamp(54px,15vw,92px);text-transform:uppercase}
+h1 em{font-style:normal;color:var(--ochre)}
+h2{font-size:clamp(34px,9vw,46px);text-transform:uppercase}
+p{margin:0;max-width:62ch}
+.lede{font-size:20px;line-height:1.5}
+.muted{color:var(--muted)}
+.actions{display:flex;flex-direction:column;gap:12px}
+.btn{border-radius:999px;padding:18px 26px;min-height:56px;font:700 17px/1 var(--body);text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;background:var(--gum);color:var(--gum-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.who{display:flex;gap:8px;flex-wrap:wrap}
+.who span{border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+
+.story{border-left:3px solid var(--ochre);padding-left:18px;display:flex;flex-direction:column;gap:14px}
+.pull{font-family:var(--display);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.05;text-transform:uppercase;color:var(--gum)}
+
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillar strong{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1}
+.pillar p{font-size:15px;color:var(--muted)}
+
+.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.list li:first-child{border-top:1px solid var(--line)}
+.list b{font-weight:700}
+.list span{color:var(--muted);text-align:right;font-size:15px}
+
+.cta{background:var(--gum);color:var(--gum-ink);border-radius:22px;padding:28px 22px;display:flex;flex-direction:column;gap:14px}
+.cta h2{color:var(--gum-ink)}
+.cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border-color:currentColor}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+
+.phases{display:flex;flex-direction:column;gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;min-width:0}
+.phase .wk{grid-row:span 3;font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;color:var(--ochre);text-transform:uppercase}
+.phase strong{font-family:var(--display);font-size:28px;font-weight:800;text-transform:uppercase;line-height:1}
+.phase small{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phase p{font-size:15px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-family:var(--display);font-weight:900;font-size:clamp(64px,18vw,96px);line-height:.9;color:var(--gum-ink)}
+.price span{font-weight:600}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ticks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.ticks li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--ochre)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--ochre)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+legend{padding:0;margin-bottom:6px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field>label,.field>.q{font-weight:600;font-size:16px}
+.field .hint{font-size:14px;color:var(--muted);font-weight:400}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{font:500 17px/1.4 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:15px;cursor:pointer;background:var(--surface)}
+.choices input{accent-color:var(--gum);margin:0}
+.choices label:has(input:checked){border-color:var(--gum);box-shadow:inset 0 0 0 1.5px var(--gum)}
+.choices label:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:2px}
+.scale{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center}
+.scale .choices{flex-wrap:nowrap}
+.scale .choices label{padding:8px 12px}
+@media (max-width:440px){.scale{grid-template-columns:1fr}}
+.sec{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.sec h2{font-size:clamp(30px,8vw,40px)}
+.agree{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:15px}
+.agree input{width:20px;height:20px;accent-color:var(--gum);margin-top:3px}
+.err{color:#C0502F;font-weight:600;font-size:15px}
+.ok{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.legal h2{font-size:clamp(24px,6vw,30px)}
+.legal ol,.legal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:62ch}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700}
+.nav a{color:var(--fg);text-decoration:none}
+.nav a.brand{font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--gum)}
+button.btn{border:0;cursor:pointer}
+button.btn:disabled{opacity:.6;cursor:wait}
+</style>
+</head><body>
+<main class="wrap">
+<nav class="nav"><a class="brand" href="../">Mason</a><a href="../tired/">Take the quiz</a></nav>
+
+<section>
+  <span class="eyebrow">Step 1 · About 10 minutes</span>
+  <h1 style="font-size:clamp(48px,13vw,80px)">Coaching <em>intake</em></h1>
+  <p class="lede">Answer as honestly as you can. There are no wrong answers. I read every form before your first consult, so we can spend the hour fixing things instead of filling in boxes.</p>
+</section>
+<form id="intake" novalidate>
+  <div id="sections" style="display:flex;flex-direction:column;gap:56px"></div>
+  <section class="sec" style="margin-top:56px">
+    <h2>Last bit</h2>
+    <label class="agree" for="agree"><input type="checkbox" id="agree" name="agree"><span>I've read and agree to the <a href="../agreement/" target="_blank" style="color:inherit">coaching agreement and health disclaimer</a>. I understand coaching isn't medical care.</span></label>
+    <p class="err" id="err" hidden></p>
+    <button class="btn" type="submit" id="send">Send my intake →</button>
+    <p class="muted" style="font-size:14px">I'll message you within 24 hours to book your 1-hour first consult.</p>
+  </section>
+</form>
+<section class="ok" id="done" hidden>
+  <h2>Got it, thanks</h2>
+  <p>Your intake's with me. I'll read it properly and message you within 24 hours to book your first consult.</p>
+  <p>While you wait, start tonight: phone out of the bedroom and lights off 30 minutes earlier than usual.</p>
+  <a class="btn ghost" href="../">Back to home</a>
+</section>
+
+<footer class="foot"><span>Mason Havenstein Wellness · Mona Vale, Northern Beaches</span><span>Holistic lifestyle coaching. Not medical advice. <a href="../agreement/" style="color:inherit">Coaching agreement &amp; health disclaimer</a></span></footer>
+</main>
+<script>
+const WEB3FORMS_KEY = "75b67772-c155-457c-9c59-15891a043302";
+// type: t=text, e=email, p=phone, l=long text, c=single choice, m=multiple choice
+const S = [
+ ["About you", [
+  ["name","Full name","t",null,1],
+  ["email","Email","e",null,1],
+  ["phone","Mobile","p"],
+  ["insta","Instagram handle","t"],
+  ["basics","Age, height and weight","t","e.g. 31, 180cm, 92kg"],
+  ["job","What do you do for work, and what hours?","t","e.g. Roofer, 6am to 4pm, some Saturdays"],
+  ["goal","What's the number one thing you want to fix in the next 3 months?","l"],
+  ["why","If this works, what's different in your life?","l"],
+  ["weight","For your body weight, are you trying to…","c",["Lose weight","Stay the same","Put weight on","Not sure"]]
+ ]],
+ ["Energy", [
+  ["wake","How do you feel when you wake up?","c",["Fresh","OK","Groggy","Wrecked"]],
+  ["crash","When does your energy crash?","c",["Morning","After lunch, 2 to 3pm","Evening","All day","It doesn't"]],
+  ["second","Do you get a second wind at night?","c",["Yes, most nights","Sometimes","No"]],
+  ["workout","How do you feel the day after a hard workout or a big day?","c",["Fine","Sore","Flu-ish","Wiped out","I don't train"]]
+ ]],
+ ["Sleep", [
+  ["bed","What time do you usually go to bed and get up?","t","e.g. 11pm and 5am"],
+  ["fallasleep","How long does it take you to fall asleep?","c",["Under 10 min","10 to 30 min","30 min or more"]],
+  ["waking","Do you wake in the night? If so, what time?","t","e.g. Most nights around 2am"],
+  ["screens","Before sleep, you're usually…","c",["On my phone in bed","Watching TV","Reading or winding down"]]
+ ]],
+ ["Food and drink", [
+  ["food","Walk me through a normal day of eating, from waking up to bed","l"],
+  ["caffeine","Coffees or energy drinks a day?","c",["None","1","2","3","4 or more"]],
+  ["alcohol","Alcohol in a normal week?","c",["None","1 to 4 drinks","5 to 10","11 or more"]],
+  ["water","How much water do you drink a day?","c",["Under 1 litre","1 to 2 litres","Over 2 litres"]],
+  ["cravings","What do you crave, and when?","t","e.g. Sweet stuff after lunch and at night"]
+ ]],
+ ["Gut", [
+  ["bloat","Do you get bloated?","c",["No","Straight after eating","A few hours after eating","Most of the day"]],
+  ["poo","How often do you go to the toilet (number twos), and what's it like?","t","e.g. Every 2 days, hard"],
+  ["foods","Any foods that don't agree with you?","t"]
+ ]],
+ ["Stress and mind", [
+  ["stress","Stress out of 10, and what's the biggest stressor right now?","t","e.g. 7, money and work"],
+  ["sit","Can you sit and do nothing without feeling guilty or restless?","c",["Yes, easily","Sometimes","No, never"]],
+  ["changes","Any big changes in the last 12 months?","m",["Moved house","Breakup or divorce","New baby","New job or lost a job","Lost someone","Health scare","None"]],
+  ["mood","Most days your mood is…","c",["Good","Flat","Anxious","Irritable","Up and down"]],
+  ["libido","How's your sex drive compared to a few years ago?","c",["Same or better","A bit lower","A lot lower","Rather not say"]]
+ ]],
+ ["Body check", [
+  ["_scale","How often do you get these? 0 = never, 1 = sometimes, 2 = weekly, 3 = daily","s",["Headaches","Blocked nose or sinus","Brain fog","Aches or stiff joints","Skin issues","Cold hands and feet","Getting sick"]]
+ ]],
+ ["Health and safety", [
+  ["conditions","Any medical conditions?","l","Include anything diagnosed, e.g. high blood pressure, thyroid, diabetes, gallstones"],
+  ["meds","Any medications or supplements you take?","l"],
+  ["pregnant","Are you pregnant or breastfeeding?","c",["No","Yes","Not applicable"]],
+  ["ed","Have you ever had an eating disorder?","c",["No","Yes","Rather not say"]],
+  ["doctor","Are you seeing a doctor or specialist for anything right now?","t"]
+ ]],
+ ["Getting started", [
+  ["days","How many days a week can you realistically train or move?","c",["0 to 1","2","3","4","5 or more"]],
+  ["ready","How ready are you to make changes, out of 10?","c",["1 to 4","5 to 6","7 to 8","9 to 10"]],
+  ["times","Best days and times for your weekly call?","t","e.g. Weekday evenings after 5pm"],
+  ["found","How did you find me?","c",["Instagram","The quiz","A friend","TikTok or Facebook","Other"]]
+ ]]
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const box=document.getElementById("sections");
+box.innerHTML=S.map(([title,qs],si)=>`<fieldset class="sec"><legend><span class="eyebrow">Part ${si+1} of ${S.length}</span><h2>${esc(title)}</h2></legend>${qs.map(q=>field(q)).join("")}</fieldset>`).join("");
+function field([id,label,type,opt,req]){
+  const hint=(typeof opt==="string")?`<span class="hint">${esc(opt)}</span>`:"";
+  const star=req?" *":"";
+  if(type==="t"||type==="e"||type==="p"){const it=type==="e"?"email":type==="p"?"tel":"text";const ac=id==="name"?' autocomplete="name"':id==="email"?' autocomplete="email"':id==="phone"?' autocomplete="tel"':"";
+    return `<div class="field"><label for="f_${id}">${esc(label)}${star}</label>${hint}<input id="f_${id}" name="${id}" type="${it}"${ac}></div>`;}
+  if(type==="l") return `<div class="field"><label for="f_${id}">${esc(label)}</label>${hint}<textarea id="f_${id}" name="${id}"></textarea></div>`;
+  if(type==="c"||type==="m"){const it=type==="c"?"radio":"checkbox";
+    return `<div class="field" role="group" aria-labelledby="q_${id}"><span class="q" id="q_${id}">${esc(label)}${type==="m"?' <span class="hint">(tick any)</span>':""}</span><div class="choices">${opt.map((o,i)=>`<label for="f_${id}_${i}"><input type="${it}" id="f_${id}_${i}" name="${id}" value="${esc(o)}">${esc(o)}</label>`).join("")}</div></div>`;}
+  if(type==="s") return `<div class="field"><span class="q">${esc(label)}</span><div class="scale">${opt.map((o,i)=>`<span>${esc(o)}</span><div class="choices" role="group" aria-label="${esc(o)}">${[0,1,2,3].map(n=>`<label for="f_bc${i}_${n}"><input type="radio" id="f_bc${i}_${n}" name="bc${i}" value="${n}">${n}</label>`).join("")}</div>`).join("")}</div></div>`;
+}
+const LABELS={};S.forEach(([t,qs])=>qs.forEach(q=>LABELS[q[0]]=q[1]));
+document.getElementById("intake").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target, err=document.getElementById("err");
+  const name=f.name.value.trim(), email=f.email.value.trim();
+  const fail=m=>{err.textContent=m;err.hidden=false;err.scrollIntoView({block:"center"})};
+  if(!name) return fail("Pop your name in at the top.");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Your email doesn't look right. Check it at the top.");
+  if(!document.getElementById("agree").checked) return fail("Tick the box to agree to the coaching agreement.");
+  err.hidden=true;
+  const fd=new FormData(f), out={};
+  for(const [k] of Object.entries(LABELS)){ if(k==="_scale") continue; const v=fd.getAll(k).filter(Boolean).join(", "); out[LABELS[k]]=v||"-"; }
+  const syms=S.find(s=>s[0]==="Body check")[1][0][3]; let total=0, answered=0;
+  syms.forEach((s,i)=>{const v=fd.get("bc"+i); if(v!==null){total+=+v;answered++} out["Body check: "+s]=v??"-";});
+  const band=!answered?"-":total<=5?"Doing well":total<=11?"Barrel filling up":"Time to get to work";
+  out["Body check total (out of 21)"]=answered?`${total} (${band})`:"-";
+  const btn=document.getElementById("send"); btn.disabled=true; btn.textContent="Sending…";
+  try{
+    const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify(Object.assign({access_key:WEB3FORMS_KEY,subject:`New coaching intake: ${name}`,from_name:"Coaching Intake",name,email,replyto:email},out))});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success===false) throw new Error(j.message||"Send failed");
+    f.hidden=true; document.getElementById("done").hidden=false; window.scrollTo(0,0);
+  }catch(x){ btn.disabled=false; btn.textContent="Send my intake →"; fail("That didn't send. Check your internet and try again. If it keeps failing, DM me on Instagram @mason_havenstein_wellness."); }
+};
+</script>
+</body></html>

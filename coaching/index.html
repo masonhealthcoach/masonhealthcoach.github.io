@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="1:1 energy coaching with Mason: Reset, Rebuild, Recharge. 12 weeks, one call a week, $299 per month, no lock-in.">
+<title>Energy Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+
+:root{
+  --bg:#EDF0EA; --surface:#F8FAF6; --fg:#16211B; --muted:#56635B; --line:#CBD3CA;
+  --gum:#1F4D3A; --gum-ink:#F3F7F2; --ochre:#B9822A;
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }
+
+*{box-sizing:border-box} html,body{margin:0} [hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:clamp(54px,15vw,92px);text-transform:uppercase}
+h1 em{font-style:normal;color:var(--ochre)}
+h2{font-size:clamp(34px,9vw,46px);text-transform:uppercase}
+p{margin:0;max-width:62ch}
+.lede{font-size:20px;line-height:1.5}
+.muted{color:var(--muted)}
+.actions{display:flex;flex-direction:column;gap:12px}
+.btn{border-radius:999px;padding:18px 26px;min-height:56px;font:700 17px/1 var(--body);text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;background:var(--gum);color:var(--gum-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.who{display:flex;gap:8px;flex-wrap:wrap}
+.who span{border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+
+.story{border-left:3px solid var(--ochre);padding-left:18px;display:flex;flex-direction:column;gap:14px}
+.pull{font-family:var(--display);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.05;text-transform:uppercase;color:var(--gum)}
+
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillar strong{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1}
+.pillar p{font-size:15px;color:var(--muted)}
+
+.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.list li:first-child{border-top:1px solid var(--line)}
+.list b{font-weight:700}
+.list span{color:var(--muted);text-align:right;font-size:15px}
+
+.cta{background:var(--gum);color:var(--gum-ink);border-radius:22px;padding:28px 22px;display:flex;flex-direction:column;gap:14px}
+.cta h2{color:var(--gum-ink)}
+.cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border-color:currentColor}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+
+.phases{display:flex;flex-direction:column;gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;min-width:0}
+.phase .wk{grid-row:span 3;font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;color:var(--ochre);text-transform:uppercase}
+.phase strong{font-family:var(--display);font-size:28px;font-weight:800;text-transform:uppercase;line-height:1}
+.phase small{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phase p{font-size:15px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-family:var(--display);font-weight:900;font-size:clamp(64px,18vw,96px);line-height:.9;color:var(--gum-ink)}
+.price span{font-weight:600}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ticks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.ticks li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--ochre)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--ochre)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+legend{padding:0;margin-bottom:6px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field>label,.field>.q{font-weight:600;font-size:16px}
+.field .hint{font-size:14px;color:var(--muted);font-weight:400}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{font:500 17px/1.4 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:15px;cursor:pointer;background:var(--surface)}
+.choices input{accent-color:var(--gum);margin:0}
+.choices label:has(input:checked){border-color:var(--gum);box-shadow:inset 0 0 0 1.5px var(--gum)}
+.choices label:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:2px}
+.scale{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center}
+.scale .choices{flex-wrap:nowrap}
+.scale .choices label{padding:8px 12px}
+@media (max-width:440px){.scale{grid-template-columns:1fr}}
+.sec{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.sec h2{font-size:clamp(30px,8vw,40px)}
+.agree{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:15px}
+.agree input{width:20px;height:20px;accent-color:var(--gum);margin-top:3px}
+.err{color:#C0502F;font-weight:600;font-size:15px}
+.ok{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.legal h2{font-size:clamp(24px,6vw,30px)}
+.legal ol,.legal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:62ch}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700}
+.nav a{color:var(--fg);text-decoration:none}
+.nav a.brand{font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--gum)}
+button.btn{border:0;cursor:pointer}
+button.btn:disabled{opacity:.6;cursor:wait}
+</style>
+</head><body>
+<main class="wrap">
+<nav class="nav"><a class="brand" href="../">Mason</a><a href="../tired/">Take the quiz</a></nav>
+
+<section>
+  <span class="eyebrow">1:1 coaching · Online · Australia-wide</span>
+  <h1>Get your <em>energy</em> back</h1>
+  <p class="lede">A 12-week, three-phase plan to stop running on coffee and fumes. We fix the basics first, then rebuild, then lock it in. One call a week with me, start to finish.</p>
+  <div class="who"><span>Tradies</span><span>Desk workers</span><span>Gym rats</span><span>Burnt-out parents</span></div>
+  <div class="actions">
+    <a class="btn" href="../intake/">Apply for coaching →</a>
+    <a class="btn ghost" href="../tired/">Not sure yet? Take the quiz</a>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Is this you?</span>
+  <h2>Always tired, and nothing's fixing it</h2>
+  <ul class="ticks">
+    <li>You wake up groggy and need a coffee before you can talk to anyone</li>
+    <li>You crash every arvo, or you're wide awake the second your head hits the pillow</li>
+    <li>You train hard and feel worse, not better</li>
+    <li>You're bloated, foggy, short-tempered or just flat</li>
+    <li>You've tried diets and supplements and none of it stuck</li>
+  </ul>
+  <p>Your energy problem is never just one thing. It's food, sleep, stress, how you train and what your body has to clear every day, all stacked on top of each other. We work on all of it, one step at a time.</p>
+</section>
+
+<section>
+  <span class="eyebrow">How it works</span>
+  <h2>Three phases, twelve weeks</h2>
+  <div class="phases">
+    <div class="phase"><span class="wk">1–4</span><small>Weeks 1 to 4</small><strong>Reset</strong><p>Fix your sleep and daily rhythm first. Regular meals, a proper breakfast, water and salt, daily walks, and pulling back on whatever's draining you. If you're burnt out, we ease off hard training while your body catches up.</p></div>
+    <div class="phase"><span class="wk">5–8</span><small>Weeks 5 to 8</small><strong>Rebuild</strong><p>A food plan built for your body and goal, whether that's losing weight, holding steady or putting it on. Stress tools that actually fit your day. Training built back up step by step, plus the right supplements if you need them.</p></div>
+    <div class="phase"><span class="wk">9–12</span><small>Weeks 9 to 12</small><strong>Recharge</strong><p>Back to full training, reintroducing foods, an optional detox if it suits you, and a simple plan you can run on your own so the energy sticks after we finish.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">What you get</span>
+  <h2>Me in your corner every week</h2>
+  <ul class="list">
+    <li><b>1-hour first consult</b><span>We go through your intake and set your plan</span></li>
+    <li><b>30-minute check-in every week</b><span>Track progress, fix what's not working</span></li>
+    <li><b>Your personal plan</b><span>Updated as you move through each phase</span></li>
+    <li><b>Simple guides</b><span>3 or 4 per phase, never a pile of paperwork</span></li>
+    <li><b>Progress checks</b><span>Energy score and body check at the start and end</span></li>
+  </ul>
+</section>
+
+<section class="cta">
+  <span class="eyebrow" style="color:var(--gum-ink);opacity:.8">Founding client price</span>
+  <div class="price"><b>$299</b><span>per month</span></div>
+  <p>No lock-in contract. Pay month to month and cancel any time before your next billing date. Most people do all three phases, about three months.</p>
+  <a class="btn" href="../intake/">Apply for coaching →</a>
+  <p style="font-size:14px;opacity:.85">Fill in the intake form (about 10 minutes). I'll read it and message you within 24 hours to book your first consult.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Questions</span>
+  <h2>Before you apply</h2>
+  <div>
+    <details><summary>Is this online?</summary><p>Yes. Every call is a video call, so it works wherever you are in Australia.</p></details>
+    <details><summary>Do I have to commit to three months?</summary><p>No. It's month to month. Most people stay for all three phases because that's how long it takes to feel the difference properly, but you can stop any time.</p></details>
+    <details><summary>Do I need to buy supplements?</summary><p>No. Phase 1 is all habits. If supplements would help in Phase 2, I'll explain what and why, and you decide.</p></details>
+    <details><summary>Is this medical treatment?</summary><p>No. I'm a holistic lifestyle coach, not a doctor. I don't diagnose or treat conditions or change medications. If anything medical comes up, I'll send you to your GP. Read the <a href="../agreement/" style="color:inherit">coaching agreement and health disclaimer</a>.</p></details>
+    <details><summary>What if I'm on the tools all day?</summary><p>That's who I built this for. I did years as a roofer, a sparky and a butcher. Everything fits around early starts and long days.</p></details>
+  </div>
+</section>
+
+<footer class="foot"><span>Mason Havenstein Wellness · Mona Vale, Northern Beaches</span><span>Holistic lifestyle coaching. Not medical advice. <a href="../agreement/" style="color:inherit">Coaching agreement &amp; health disclaimer</a></span></footer>
+</main>
+
+</body></html>

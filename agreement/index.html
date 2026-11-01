@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Coaching agreement and health disclaimer for Mason Havenstein Wellness 1:1 coaching.">
+<title>Coaching Agreement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+
+:root{
+  --bg:#EDF0EA; --surface:#F8FAF6; --fg:#16211B; --muted:#56635B; --line:#CBD3CA;
+  --gum:#1F4D3A; --gum-ink:#F3F7F2; --ochre:#B9822A;
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1612; --surface:#17211B; --fg:#E4EAE3; --muted:#9AA79E; --line:#2C3A31;
+  --gum:#86C0A0; --gum-ink:#0F1612; --ochre:#E2B456; color-scheme:dark }
+
+*{box-sizing:border-box} html,body{margin:0} [hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:clamp(54px,15vw,92px);text-transform:uppercase}
+h1 em{font-style:normal;color:var(--ochre)}
+h2{font-size:clamp(34px,9vw,46px);text-transform:uppercase}
+p{margin:0;max-width:62ch}
+.lede{font-size:20px;line-height:1.5}
+.muted{color:var(--muted)}
+.actions{display:flex;flex-direction:column;gap:12px}
+.btn{border-radius:999px;padding:18px 26px;min-height:56px;font:700 17px/1 var(--body);text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;background:var(--gum);color:var(--gum-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.who{display:flex;gap:8px;flex-wrap:wrap}
+.who span{border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+
+.story{border-left:3px solid var(--ochre);padding-left:18px;display:flex;flex-direction:column;gap:14px}
+.pull{font-family:var(--display);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.05;text-transform:uppercase;color:var(--gum)}
+
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillar strong{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1}
+.pillar p{font-size:15px;color:var(--muted)}
+
+.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.list li:first-child{border-top:1px solid var(--line)}
+.list b{font-weight:700}
+.list span{color:var(--muted);text-align:right;font-size:15px}
+
+.cta{background:var(--gum);color:var(--gum-ink);border-radius:22px;padding:28px 22px;display:flex;flex-direction:column;gap:14px}
+.cta h2{color:var(--gum-ink)}
+.cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border-color:currentColor}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+
+.phases{display:flex;flex-direction:column;gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;min-width:0}
+.phase .wk{grid-row:span 3;font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;color:var(--ochre);text-transform:uppercase}
+.phase strong{font-family:var(--display);font-size:28px;font-weight:800;text-transform:uppercase;line-height:1}
+.phase small{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phase p{font-size:15px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-family:var(--display);font-weight:900;font-size:clamp(64px,18vw,96px);line-height:.9;color:var(--gum-ink)}
+.price span{font-weight:600}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ticks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.ticks li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--ochre)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--ochre)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+legend{padding:0;margin-bottom:6px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field>label,.field>.q{font-weight:600;font-size:16px}
+.field .hint{font-size:14px;color:var(--muted);font-weight:400}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{font:500 17px/1.4 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:15px;cursor:pointer;background:var(--surface)}
+.choices input{accent-color:var(--gum);margin:0}
+.choices label:has(input:checked){border-color:var(--gum);box-shadow:inset 0 0 0 1.5px var(--gum)}
+.choices label:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:2px}
+.scale{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center}
+.scale .choices{flex-wrap:nowrap}
+.scale .choices label{padding:8px 12px}
+@media (max-width:440px){.scale{grid-template-columns:1fr}}
+.sec{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.sec h2{font-size:clamp(30px,8vw,40px)}
+.agree{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:15px}
+.agree input{width:20px;height:20px;accent-color:var(--gum);margin-top:3px}
+.err{color:#C0502F;font-weight:600;font-size:15px}
+.ok{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.legal h2{font-size:clamp(24px,6vw,30px)}
+.legal ol,.legal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:62ch}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700}
+.nav a{color:var(--fg);text-decoration:none}
+.nav a.brand{font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--gum)}
+button.btn{border:0;cursor:pointer}
+button.btn:disabled{opacity:.6;cursor:wait}
+</style>
+</head><body>
+<main class="wrap">
+<nav class="nav"><a class="brand" href="../">Mason</a><a href="../tired/">Take the quiz</a></nav>
+
+<section class="legal">
+  <span class="eyebrow">Please read before your first consult</span>
+  <h1 style="font-size:clamp(44px,12vw,72px)">Coaching agreement</h1>
+  <p class="lede">This is the agreement between you and Mason Havenstein (Mason Havenstein Wellness) for 1:1 energy coaching. By ticking the box on the intake form and booking your first consult, you agree to it.</p>
+</section>
+
+<section class="legal">
+  <h2>1. What coaching is</h2>
+  <p>Coaching is education and support to help you build healthier habits around food, sleep, movement, stress and lifestyle. The program runs in three phases (Reset, Rebuild, Recharge) over about 12 weeks. It includes a 1-hour first consult and a 30-minute video check-in each week.</p>
+</section>
+
+<section class="legal">
+  <h2>2. Health disclaimer</h2>
+  <ul>
+    <li>Mason is a holistic lifestyle coach. He is not a medical doctor, dietitian, psychologist or other registered health practitioner.</li>
+    <li>Coaching is not medical care. Mason does not diagnose, treat or cure any disease or condition, and does not prescribe or change medication.</li>
+    <li>Everything shared in coaching is general education. It does not replace advice from your GP or other health professional.</li>
+    <li>Check with your GP before changing your diet, training, fasting or supplements, especially if you have a medical condition, take medication, or are pregnant or breastfeeding.</li>
+    <li>Any supplement suggestions are general. Check them with your GP or pharmacist, as some can interact with medication.</li>
+    <li>If you have symptoms that worry you, see your GP. In an emergency call 000. For crisis support call Lifeline on 13 11 14.</li>
+  </ul>
+</section>
+
+<section class="legal">
+  <h2>3. Your part</h2>
+  <ul>
+    <li>Give honest, complete answers on your intake form, and tell Mason straight away about any new diagnosis, medication or pregnancy.</li>
+    <li>You are responsible for your own choices and actions during and after coaching.</li>
+    <li>Results depend on many things, including how consistently you follow the plan. No particular result is guaranteed.</li>
+  </ul>
+</section>
+
+<section class="legal">
+  <h2>4. Payment and cancelling</h2>
+  <ul>
+    <li>Coaching is $299 per month, paid in advance. There's no lock-in contract.</li>
+    <li>You can cancel any time. Let Mason know before your next billing date and you won't be charged again.</li>
+    <li>Payments aren't refunded once that month has started, except where Australian Consumer Law requires it.</li>
+  </ul>
+</section>
+
+<section class="legal">
+  <h2>5. Calls and rescheduling</h2>
+  <ul>
+    <li>Calls are by video at a time you both agree on.</li>
+    <li>Give at least 24 hours' notice to reschedule. A call missed without notice counts as used.</li>
+    <li>If Mason needs to reschedule, he'll give as much notice as he can and the call will be made up.</li>
+  </ul>
+</section>
+
+<section class="legal">
+  <h2>6. Privacy</h2>
+  <ul>
+    <li>Your intake answers and anything you share in coaching are kept private and stored securely.</li>
+    <li>Mason won't share your information with anyone without your permission, unless the law requires it or someone's safety is at serious risk.</li>
+    <li>Your email is used for coaching and for occasional health emails. You can unsubscribe any time.</li>
+  </ul>
+</section>
+
+<section class="legal">
+  <h2>7. Ending coaching</h2>
+  <p>Either of you can end coaching at any time by letting the other know. Mason may end coaching, or suggest you see a health professional instead, if coaching isn't the right fit for what's going on, for example a medical issue that needs a doctor.</p>
+</section>
+
+<section class="legal">
+  <h2>8. The fine print</h2>
+  <p>This agreement is governed by the laws of New South Wales, Australia. Nothing in it limits your rights under Australian Consumer Law.</p>
+  <p class="muted">Last updated 1 November 2026.</p>
+</section>
+
+<footer class="foot"><span>Mason Havenstein Wellness · Mona Vale, Northern Beaches</span><span>Holistic lifestyle coaching. Not medical advice. <a href="../agreement/" style="color:inherit">Coaching agreement &amp; health disclaimer</a></span></footer>
+</main>
+
+</body></html>
