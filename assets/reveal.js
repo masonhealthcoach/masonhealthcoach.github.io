@@ -22,7 +22,7 @@
   if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.documentElement.classList.add('rv-on');
   var sel='main h1,main h2,main h3,main p,main figure,main .pillar,main .card,main .phase,main .list li,main .ticks li,main details,main .pair img,main .who,main .actions,main .price,main .eyebrow';
-  var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){return !e.closest('.cta,.foot,footer,nav')||e.matches('.cta')});
+  var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){return !e.closest('.cta,.foot,footer,nav,.hero,.about-hero')||e.matches('.cta')});
   [].forEach.call(document.querySelectorAll('main .cta'),function(c){els.push(c)});
   els.forEach(function(e){e.classList.add('rv')});
   var io=new IntersectionObserver(function(entries){
