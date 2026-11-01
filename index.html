@@ -65,30 +65,84 @@ p{margin:0;max-width:62ch}
 .cta .btn{background:var(--gum-ink);color:var(--gum)}
 .cta .btn.ghost{background:transparent;color:var(--gum-ink);border-color:currentColor}
 .foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+
+/* photo layer */
+body{padding-top:0}
+.nav{max-width:600px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px}
+.nav .brand{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;text-decoration:none;color:var(--fg);letter-spacing:.02em}
+.nav .links{display:flex;gap:16px;font-size:15px;font-weight:600}
+.nav .links a{color:var(--muted);text-decoration:none}.nav .links a:hover{color:var(--fg)}
+.hero{border-radius:24px;overflow:hidden;color:#F3F7F2;background:#13281E;display:flex;flex-direction:column}
+.hero .pic{position:relative;aspect-ratio:4/4.3;max-height:560px}
+.hero .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
+.hero .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,40,30,0) 55%,#13281E 100%)}
+.hero .in{position:relative;margin-top:-64px;padding:0 20px 22px;display:flex;flex-direction:column;gap:14px}
+.hero .eyebrow{color:rgba(243,247,242,.8)}
+.hero h1 em{color:#E2B456}
+.hero .lede{font-size:18px}
+.hero .btn{background:#F3F7F2;color:#1F4D3A}
+.hero .btn.ghost{background:transparent;color:#F3F7F2;border-color:rgba(243,247,242,.6)}
+.hero .who span{border-color:rgba(243,247,242,.45)}
+.photo{border-radius:20px;overflow:hidden;margin:0}
+.photo img{display:block;width:100%;height:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px}
+.cards{display:flex;flex-direction:column;gap:12px}
+.card{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;color:var(--fg)}
+a.card:hover{border-color:var(--gum)}
+.card .num{flex:none;font-family:var(--display);font-weight:900;font-size:34px;color:var(--ochre);line-height:1;min-width:34px}
+.card b{display:block;font-size:18px}.card small{color:var(--muted);font-size:14px}
+.card .go{margin-left:auto;font-weight:700;color:var(--gum);white-space:nowrap}
+.card.soon{opacity:.6}.card.soon .go{color:var(--muted);font-size:13px}
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 10px;min-width:0}
+.phase small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phase strong{display:block;font-family:var(--display);font-weight:900;font-size:clamp(17px,4.9vw,24px);text-transform:uppercase;line-height:1.05}
+.price{display:flex;align-items:baseline;gap:8px}.price b{font-family:var(--display);font-size:52px;font-weight:900;line-height:1}
+.cta.bush{position:relative;overflow:hidden;background:#13281E}
+.cta.bush img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}
+.cta.bush > *:not(img){position:relative}
+.cta.bush, .cta.bush h2{color:#F3F7F2}
+.cta.bush .btn{background:#F3F7F2;color:#1F4D3A}.cta.bush .btn.ghost{background:transparent;color:#F3F7F2}
 </style>
 
 </head><body>
+<nav class="nav"><a class="brand" href="./">Mason H.</a><div class="links"><a href="tired/">Quizzes</a><a href="coaching/">Coaching</a></div></nav>
 <main class="wrap">
 
-  <section style="gap:22px">
-    <span class="eyebrow">Mason · Holistic lifestyle coach · Northern Beaches, Sydney</span>
-    <h1>Get your <em>energy</em> back</h1>
-    <p class="lede">I help people who are tired all the time work out why, and fix it with food, sleep, movement and how they handle stress. No gimmicks.</p>
-    <div class="who" aria-label="Who I work with"><span>Tradies</span><span>Desk workers</span><span>Gym rats</span></div>
-    <div class="actions">
-      <a class="btn" href="tired/">Wired, burnt out or flat? Take the quiz →</a>
-      <a class="btn ghost" href="coaching/">Work with me 1:1</a>
+  <section class="hero">
+    <div class="pic"><img src="img/hero.jpg" alt="Mason in a leather bush hat by the water"></div>
+    <div class="in">
+      <span class="eyebrow">Holistic lifestyle coach · Northern Beaches</span>
+      <h1>Get your <em>energy</em> back</h1>
+      <p class="lede">I help people who are tired all the time work out why, then fix it with food, sleep, movement and how they handle stress.</p>
+      <div class="who" aria-label="Who I work with"><span>Tradies</span><span>Desk workers</span><span>Gym goers</span></div>
+      <div class="actions">
+        <a class="btn" href="tired/">Wired, burnt out or flat? Take the quiz →</a>
+        <a class="btn ghost" href="coaching/">Work with me 1:1</a>
+      </div>
     </div>
   </section>
 
   <section>
     <span class="eyebrow">My story</span>
     <h2>I was that tired guy</h2>
+    <figure class="photo"><img src="img/dogs-water.jpg" alt="Mason smiling with his dog by the water" loading="lazy"></figure>
     <div class="story">
-      <p>For years I worked on the tools as a roofer, a sparky and a butcher. Eight to ten hour days, and I was always tired and always chasing energy.</p>
-      <p>I tried the extremes. I did a full year of carnivore. It felt great at the start, and by the end I felt terrible. That's when I worked out that no single diet fixes it. You have to look at the whole picture.</p>
+      <p>For years I worked on the tools as a roofer, a sparky and a butcher. Eight to ten hour days, always tired, always chasing energy.</p>
+      <p>I tried the extremes. A full year of carnivore felt great at the start, and terrible by the end. That's when I worked out no single diet fixes it. You have to look at the whole picture.</p>
       <p class="pull">Your energy problem is never just one thing.</p>
-      <p>So I spent four years studying holistic health under the Paul Chek system, and I'm now training as an Integrative Health Practitioner with Dr Stephen Cabral. Everything I teach is stuff I've tested on myself first.</p>
+      <p>So I spent years studying holistic health under the Paul Chek system, and I'm now training as an Integrative Health Practitioner with Dr Stephen Cabral. Everything I teach, I've tested on myself first.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Free quizzes · 60 seconds each</span>
+    <h2>Start with a quiz</h2>
+    <div class="cards">
+      <a class="card" href="tired/"><span class="num">01</span><span><b>Your energy type</b><small>Wired, crashing, burnt out or flat?</small></span><span class="go">Start →</span></a>
+      <div class="card soon"><span class="num">02</span><span><b>Your food type</b><small>Which foods actually suit your body</small></span><span class="go">Coming soon</span></div>
+      <div class="card soon"><span class="num">03</span><span><b>Your toxic load</b><small>How full is your barrel?</small></span><span class="go">Coming soon</span></div>
     </div>
   </section>
 
@@ -98,9 +152,27 @@ p{margin:0;max-width:62ch}
     <div class="pillars">
       <div class="pillar"><strong>Food</strong><p>What you eat, when you eat and how well you digest it. Real food, not another diet.</p></div>
       <div class="pillar"><strong>Rhythm</strong><p>Sleep, sunlight and daily timing. Your body runs on a clock, and most of us fight it.</p></div>
-      <div class="pillar"><strong>Toxins</strong><p>Everything your body has to clear every day. When the barrel overflows, energy is the first thing to go.</p></div>
+      <div class="pillar"><strong>Toxins</strong><p>Everything your body has to clear every day. When the barrel overflows, energy goes first.</p></div>
       <div class="pillar"><strong>Mindset</strong><p>Stress, emotions and the stuff you carry around. It drains you more than any workout.</p></div>
     </div>
+  </section>
+
+  <div class="pair">
+    <img src="img/dogs-grass.jpg" alt="Mason with his two dogs on the grass" loading="lazy">
+    <img src="img/kitchen.jpg" alt="Mason holding his dog in the kitchen" loading="lazy">
+  </div>
+
+  <section>
+    <span class="eyebrow">1:1 coaching</span>
+    <h2>12 weeks, 3 phases</h2>
+    <div class="phases">
+      <div class="phase"><small>Wk 1–4</small><strong>Reset</strong></div>
+      <div class="phase"><small>Wk 5–8</small><strong>Rebuild</strong></div>
+      <div class="phase"><small>Wk 9–12</small><strong>Recharge</strong></div>
+    </div>
+    <p>A 1-hour first consult, then a 30-minute check-in every week, a plan built around your life, and guides for every phase.</p>
+    <div class="price"><b>$299</b><span class="muted">per month · no lock-in</span></div>
+    <a class="btn" href="coaching/">See how it works →</a>
   </section>
 
   <section>
@@ -108,22 +180,24 @@ p{margin:0;max-width:62ch}
     <h2>Where it comes from</h2>
     <ul class="list">
       <li><b>CHEK Holistic Lifestyle Coach</b><span>Levels 1 &amp; 2</span></li>
+      <li><b>CHEK Integrated Movement Science</b><span>Level 1</span></li>
       <li><b>Integrative Health Practitioner</b><span>In training, Dr Stephen Cabral</span></li>
-      <li><b>On the tools</b><span>Years roofing, sparkying and butchering</span></li>
+      <li><b>On the tools</b><span>Roofer, sparky, butcher</span></li>
     </ul>
   </section>
 
-  <section class="cta">
-    <span class="eyebrow" style="color:var(--gum-ink);opacity:.8">Start here</span>
+  <section class="cta bush">
+    <img src="img/bush.jpg" alt="" loading="lazy">
+    <span class="eyebrow" style="color:#F3F7F2;opacity:.8">Start here</span>
     <h2>Find out why you're flat</h2>
-    <p>The quiz takes 60 seconds. It tells you your Ayurvedic energy type and gives you three things to change this week.</p>
-    <a class="btn" href="quiz/">Take the quiz →</a>
+    <p>Ten questions. You get your energy type and three things to change this week.</p>
+    <a class="btn" href="tired/">Take the quiz →</a>
     <a class="btn ghost" href="https://www.instagram.com/mason_havenstein_wellness/" target="_blank" rel="noopener">Follow @mason_havenstein_wellness</a>
   </section>
 
   <footer class="foot">
     <span>Mason Havenstein Wellness · Mona Vale, Northern Beaches</span>
-    <span>General wellness education, not medical advice.</span>
+    <span>General wellness education, not medical advice. <a href="agreement/" style="color:inherit">Coaching agreement</a></span>
   </footer>
 </main>
 </body></html>
