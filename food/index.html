@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>What's Your Food Type?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column, one screen at a time: intro → 10 quick questions → email → energy type + score bars + 3 fixes + DM */
+:root{
+  --bg:#F2ECE1; --surface:#FBF8F2; --fg:#231E19; --muted:#6B6157; --line:#DCD2C2;
+  --gum:#4A5A2E; --gum-ink:#FBF8F2; --ochre:#7E2232;
+  --hot:#C0502F; --mid:#7E2232; --calm:#4F6F9A;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A;
+  --hot:#EC8A66; --mid:#D9A86A; --calm:#93B2DA; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A;
+  --hot:#EC8A66; --mid:#D9A86A; --calm:#93B2DA; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.brand{font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--gum)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:clamp(54px,16vw,90px);text-transform:uppercase}
+h1 em{font-style:normal;color:var(--hot)}
+h2{font-size:clamp(30px,8.5vw,44px)}
+p{margin:0}
+.lede{font-size:19px;max-width:34ch}
+.small{font-size:14px;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:12px}
+.btn{appearance:none;border:0;cursor:pointer;font:700 17px/1 var(--body);border-radius:999px;padding:18px 26px;min-height:56px;
+  background:var(--gum);color:var(--gum-ink);text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.pedals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pedal{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pedal strong{font-family:var(--display);font-size:22px;font-weight:800;text-transform:uppercase;line-height:1.05}
+.pedal small{font-size:13px;color:var(--muted);line-height:1.35}
+
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ochre);transition:width .3s ease}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--muted);font:600 15px var(--body);cursor:pointer;padding:8px 0}
+.back:disabled{visibility:hidden}
+.opt{appearance:none;text-align:left;width:100%;cursor:pointer;background:var(--surface);color:var(--fg);
+  border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;font:500 17px/1.4 var(--body);transition:border-color .15s,transform .1s}
+.opt:hover{border-color:var(--gum)}
+.opt:active{transform:scale(.99)}
+.opt.picked{border-color:var(--gum);box-shadow:inset 0 0 0 1.5px var(--gum)}
+
+.type{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(58px,18vw,100px);line-height:.88;margin:0}
+.meter{display:flex;flex-direction:column;gap:8px}
+.meter .track{position:relative;height:14px;border-radius:14px;background:linear-gradient(90deg,var(--calm),var(--mid),var(--hot))}
+.meter .dot{position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:var(--surface);border:4px solid var(--fg);transform:translate(-50%,-50%)}
+.meter .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.block{display:flex;flex-direction:column;gap:12px}
+.block h3{margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+ol.tips{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:t}
+ol.tips li{counter-increment:t;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+ol.tips li::before{content:counter(t);font-family:var(--display);font-weight:900;font-size:30px;line-height:1;color:var(--ochre)}
+ol.tips strong{display:block}
+ol.tips span span{color:var(--muted);font-size:15px}
+.cta{background:var(--gum);color:var(--gum-ink);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+.cta h2{font-size:clamp(28px,7.5vw,38px)}
+.cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border:1.5px solid currentColor}
+.cta .word{font-family:var(--display);font-weight:900;font-size:1.2em;letter-spacing:.04em}
+.cta .small{color:var(--gum-ink);opacity:.8}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.field input{font:500 17px/1.3 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;min-height:56px;width:100%}
+.field input:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;border-color:var(--gum)}
+.err{color:var(--hot);font-size:14px;font-weight:600}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mix{display:flex;flex-direction:column;gap:10px}
+.mix .row{display:grid;grid-template-columns:130px 1fr 28px;gap:10px;align-items:center;font-size:14px;font-weight:600}
+.mix .row .bar{height:10px}
+.mix .row b{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+@media (max-width:380px){.mix .row{grid-template-columns:104px 1fr 24px}}
+</style>
+<style>
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.lists{grid-template-columns:1fr}}
+.lists ul{margin:6px 0 0;padding-left:18px;font-size:15px;line-height:1.45;display:flex;flex-direction:column;gap:4px}
+.barrel{display:flex;gap:18px;align-items:flex-end}
+.barrel .can{position:relative;width:96px;height:132px;border:4px solid var(--fg);border-radius:14px 14px 18px 18px;overflow:hidden;flex:none;background:var(--surface)}
+.barrel .can i{position:absolute;left:0;right:0;bottom:0;background:var(--ochre);transition:height .6s ease}
+.barrel .can::before,.barrel .can::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--fg);opacity:.25;z-index:1}
+.barrel .can::before{top:33%}.barrel .can::after{top:66%}
+.score{font-family:var(--display);font-weight:900;font-size:clamp(70px,22vw,120px);line-height:.85}
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite">
+  <section class="stack" style="gap:22px">
+    <span class="brand">Mason's Quiz</span>
+    <span class="eyebrow">11 questions · 90 seconds</span>
+    <h1>What's your <em>food type?</em></h1>
+    <p class="lede">The same diet that makes your mate lean and full of energy can leave you bloated and flat. Your body type decides what fuels you. Find out which one you are.</p>
+    <div class="types">
+      <div class="pedal"><strong style="color:var(--calm)">The Wolf</strong><small>Lean, quick, runs hot and cold. Burns out fast.</small></div>
+      <div class="pedal"><strong style="color:var(--hot)">The Lion</strong><small>Driven, intense, runs hot. Hangry if a meal's late.</small></div>
+      <div class="pedal"><strong style="color:var(--gum)">The Bear</strong><small>Strong, steady, slow to start. Holds weight easily.</small></div>
+      <div class="pedal"><strong style="color:var(--ochre)">+ Your plan</strong><small>Lose, maintain or gain: the plate that suits you.</small></div>
+    </div>
+    <button class="btn" id="start" type="button">Find my type →</button>
+    <p class="foot">By Mason · Holistic lifestyle coach · Based on the Integrative Health Practitioner teachings of Dr Stephen Cabral · <a href="../" style="color:inherit">Home</a></p>
+  </section>
+</main>
+<script>
+// V = Wolf, P = Lion, K = Bear (built on body-type eating from Dr Stephen Cabral's IHP course)
+const Q = [
+  {q:"How would you describe your build?", a:[
+    ["Lean and wiry, hard to put on size",{V:2}],
+    ["Medium and athletic, I build muscle pretty easily",{P:2}],
+    ["Solid and broad, I put on size (and weight) easily",{K:2}]]},
+  {q:"What happens if you miss a meal?", a:[
+    ["I get shaky, anxious or spaced out",{V:2}],
+    ["I get hangry, look out",{P:2}],
+    ["Honestly, not much. I can go hours without food",{K:2}]]},
+  {q:"What's your appetite like?", a:[
+    ["All over the place. Starving one day, not hungry the next",{V:2}],
+    ["Big and sharp. I can eat a lot and digest it fast",{P:2}],
+    ["Steady but slow. I eat because it's time, not because I'm starving",{K:2}]]},
+  {q:"How's your digestion?", a:[
+    ["Gassy, bloated, a bit irregular. Constipation sometimes",{V:2}],
+    ["Strong, but I get heartburn or loose stools if I overdo it",{P:2}],
+    ["Slow and heavy. Food sits in me for ages",{K:2}]]},
+  {q:"Hot or cold?", a:[
+    ["Always cold. Cold hands and feet",{V:2}],
+    ["Always hot. I sweat easily and hate the heat",{P:2}],
+    ["I don't mind either, but damp, cold days make me sluggish",{K:2}]]},
+  {q:"How do you sleep?", a:[
+    ["Light. I wake up easily and my mind races",{V:2}],
+    ["Pretty good, but I wake up hot or wired around 2am",{P:2}],
+    ["Deep and long. Getting out of bed is the hard part",{K:2}]]},
+  {q:"Your skin and hair are…", a:[
+    ["Dry, rough, prone to cracking",{V:2}],
+    ["Warm, oily or reddish, prone to rashes or breakouts",{P:2}],
+    ["Thick, smooth and soft, but can get oily",{K:2}]]},
+  {q:"How does your energy run?", a:[
+    ["In bursts. I go hard, then crash",{V:2}],
+    ["High and focused. I push until the job's done",{P:2}],
+    ["Slow to get going, but once I'm moving I can go all day",{K:2}]]},
+  {q:"Under stress, you get…", a:[
+    ["Anxious and scattered. Worry takes over",{V:2}],
+    ["Angry and short-fused. I want to fix it now",{P:2}],
+    ["Flat and withdrawn. I shut down and comfort eat",{K:2}]]},
+  {q:"What do you crave most?", a:[
+    ["Warm, salty, crunchy or sweet snacks",{V:2}],
+    ["Cold drinks, spicy food, a beer after work",{P:2}],
+    ["Bread, cheese, sweets, comfort food",{K:2}]]},
+  {q:"What's your goal right now?", goal:true, a:[
+    ["Lose weight",{},"lose"],
+    ["Stay where I am and feel better",{},"maintain"],
+    ["Put on weight and size",{},"gain"]]}
+];
+const T = {
+  V:{name:"The Wolf", color:"var(--calm)", word:"WOLF", line:"Built light and quick. You burn through fuel fast.",
+    what:"You've got a fast, restless system. Your energy comes in bursts, your gut is sensitive, and you feel the cold. Strict diets, skipped meals, cold salads and too much coffee knock you around more than anyone. You need warmth, regularity and grounding food.",
+    more:["Warm, cooked meals: stews, soups, curries","Sweet potato, rice, oats and root veg","Healthy fats: ghee, olive oil, avocado","Meals at the same times every day"],
+    less:["Cold, raw salads and iced drinks","Skipping meals or long fasts","Coffee on an empty stomach","Dry, crunchy snack food"]},
+  P:{name:"The Lion", color:"var(--hot)", word:"LION", line:"Built hot and driven. Your fire needs the right fuel.",
+    what:"You've got a strong engine and a sharp appetite. You digest well and push hard, but you run hot, and when you're out of balance it shows up as heartburn, irritability, rashes or burnout from going flat out. Cooling, steady food keeps your fire working for you instead of burning you up.",
+    more:["Leafy greens, cucumber, zucchini, salads","Sweet fruits: melon, berries, pears","Coconut, olive oil, avocado","Never let a meal run late"],
+    less:["Chilli and very spicy food","Alcohol, especially beer and spirits","Fried, oily and greasy food","Too much coffee and sour food"]},
+  K:{name:"The Bear", color:"var(--gum)", word:"BEAR", line:"Built strong and steady. Your engine just runs slow.",
+    what:"You've got strength, stamina and a calm nature, but your metabolism is slow. You hold weight and fluid easily, feel heavy after big meals and take a while to get going in the morning. Light, warm, spiced food and moving your body every day fire you up.",
+    more:["Loads of veg, lightly cooked","Ginger, pepper, turmeric and warming spices","Berries and lighter fruits","Lean protein and legumes"],
+    less:["Bread, pasta and heavy starch at night","Dairy, sweets and fried food","Eating late (after 6 to 7pm)","Snacking between meals"]}
+};
+const PLAN = {
+  lose:{title:"Your plan: lose weight", rows:[
+    ["Breakfast","Smoothie: berries, a big handful of spinach, protein powder and 1 tbsp healthy fat. Sip it over the morning."],
+    ["Lunch","2+ cups veg, a palm or two of protein, 1 to 2 tbsp healthy fat. Small serve of root veg at most."],
+    ["Dinner","2+ cups veg, protein and fat. Skip the starch at night."],
+    ["The rules","No snacking. A 12 to 14 hour overnight fast. A walk after dinner. Lots of water."]]},
+  maintain:{title:"Your plan: maintain and feel better", rows:[
+    ["Breakfast","Smoothie: berries, greens and 1 to 2 tbsp healthy fat."],
+    ["Lunch","2+ cups veg, 1 cup root veg like sweet potato, a serve of protein, healthy fat."],
+    ["Dinner","2+ cups veg, half a cup of root veg, protein and fat."],
+    ["The rules","No snacking. A 12 hour overnight fast. 10,000 steps. One or two flex meals a week."]]},
+  gain:{title:"Your plan: put on size", rows:[
+    ["Breakfast","Oats or yam, plus a smoothie with berries, a banana and 2 tbsp healthy fat."],
+    ["Lunch & dinner","Cooked veg, 1 to 2 cups of rice or root veg, a solid serve of protein, 2 to 3 tbsp fat."],
+    ["Arvo snack","A second smoothie, or dip and rice crackers. Up to four feeds a day."],
+    ["The rules","Starch is your friend. Add fat first, then starch. Train full body 3 days a week, never back to back."]]}
+};
+const ORDER=["V","P","K"];
+function score(){ const s={V:0,P:0,K:0}; picks.forEach((p,i)=>{ const w=Q[i].a[p][1]; for(const k in w) s[k]+=w[k]; }); return s; }
+function topType(s){ return ORDER.reduce((b,k)=>s[k]>s[b]?k:b,ORDER[0]); }
+function goal(){ const gi=Q.findIndex(q=>q.goal); return Q[gi].a[picks[gi]][2]; }
+
+const IG = "mason_havenstein_wellness";
+const WEB3FORMS_KEY = "75b67772-c155-457c-9c59-15891a043302";
+const app = document.getElementById("app");
+let step = 0, picks = [];
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function renderQ(){
+  const item = Q[step];
+  app.innerHTML = `
+    <section class="stack" style="gap:20px">
+      <span class="brand">Mason's Quiz</span>
+      <div class="qhead">
+        <button class="back" type="button" id="back" ${step===0?"disabled":""}>← Back</button>
+        <span class="eyebrow">${step+1} / ${Q.length}</span>
+      </div>
+      <div class="bar" aria-hidden="true"><i style="width:${(step/Q.length)*100}%"></i></div>
+      ${item.cat?`<span class="eyebrow">${esc(item.cat)}</span>`:""}
+      <h2>${esc(item.q)}</h2>
+      <div class="stack" role="group" aria-label="Answers">
+        ${item.a.map((o,i)=>`<button class="opt${picks[step]===i?" picked":""}" type="button" data-i="${i}">${esc(o[0])}</button>`).join("")}
+      </div>
+    </section>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    picks[step]=+b.dataset.i; b.classList.add("picked");
+    setTimeout(()=>{ step++; step<Q.length?renderQ():renderGate(); window.scrollTo(0,0) },180);
+  });
+  document.getElementById("back").onclick=()=>{ if(step>0){step--;renderQ()} };
+}
+function renderGate(){
+  app.innerHTML = `
+    <section class="stack" style="gap:22px">
+      <span class="brand">Mason's Quiz</span>
+      <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
+      <span class="eyebrow">Done. Your result is ready</span>
+      <h2>Where should I send your results?</h2>
+      <p>You'll see your food type and plan straight away, and I'll email you a copy plus a few extra tips for your type.</p>
+      <form class="stack" id="gate" novalidate>
+        <div class="field"><label for="fname">First name</label><input id="fname" name="name" autocomplete="given-name" required></div>
+        <div class="field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <p class="err" id="gerr" hidden></p>
+        <button class="btn" type="submit" id="gsend">Show my results →</button>
+        <p class="small">By continuing you agree to get emails from Mason about energy and health. No spam, unsubscribe anytime.</p>
+      </form>
+      <button class="back" type="button" id="back">← Back to the questions</button>
+    </section>`;
+  document.getElementById("back").onclick=()=>{ step=Q.length-1; renderQ(); };
+  document.getElementById("gate").onsubmit=async e=>{
+    e.preventDefault();
+    const name=document.getElementById("fname").value.trim();
+    const email=document.getElementById("femail").value.trim();
+    const err=document.getElementById("gerr");
+    if(!name){err.textContent="Pop your first name in.";err.hidden=false;return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent="That email doesn't look right. Check it and try again.";err.hidden=false;return}
+    err.hidden=true;
+    const btn=document.getElementById("gsend"); btn.disabled=true; btn.textContent="Loading your results…";
+    const s=score(), t=T[topType(s)], g=goal();
+    if(WEB3FORMS_KEY){
+      const answers=picks.map((p,i)=>`${i+1}. ${Q[i].q} → ${Q[i].a[p][0]}`).join("\n");
+      try{ await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+        body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`New food quiz lead: ${name} (${t.name}, ${g})`,from_name:"Mason's Food Type Quiz",
+          name,email,food_type:t.name,goal:g,scores:`Wolf ${s.V} · Lion ${s.P} · Bear ${s.K}`,answers})}); }catch(_){}
+    }
+    renderResult(name);
+    window.scrollTo(0,0);
+  };
+}
+
+function renderResult(name){
+  const s=score(), top=topType(s), t=T[top], pl=PLAN[goal()];
+  const total=Object.values(s).reduce((a,b)=>a+b,0)||1;
+  const mix=ORDER.slice().sort((a,b)=>s[b]-s[a]).map(k=>`<div class="row"><span>${T[k].name}</span><div class="bar"><i style="width:${Math.round(s[k]/total*100)}%;background:${T[k].color}"></i></div><b>${Math.round(s[k]/total*100)}%</b></div>`).join("");
+  const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
+  app.innerHTML=`
+    <section class="stack" style="gap:28px">
+      <span class="brand">Mason's Quiz</span>
+      <div class="stack" style="gap:10px">
+        <span class="eyebrow">${name?esc(name)+", your":"Your"} food type</span>
+        <p class="type" style="color:${t.color}">${t.name}</p>
+        <h2>${t.line}</h2>
+      </div>
+      <p>${t.what}</p>
+      <div class="block"><h3>Your mix</h3><div class="mix">${mix}</div><p class="small">Everyone's a blend. Your top type is where to start.</p></div>
+      <div class="lists">
+        <div class="pedal"><strong style="color:var(--gum)">Eat more</strong><ul>${li(t.more)}</ul></div>
+        <div class="pedal"><strong style="color:var(--hot)">Go easy on</strong><ul>${li(t.less)}</ul></div>
+      </div>
+      <div class="block"><h3>${pl.title}</h3>
+        <ol class="tips">${pl.rows.map(r=>`<li><span><strong>${esc(r[0])}</strong><span>${esc(r[1])}</span></span></li>`).join("")}</ol>
+        <p class="small">Pick foods from the "eat more" list for your type to fill the plate. Screenshot this.</p></div>
+      <div class="cta">
+        <h2>Want it built around you?</h2>
+        <p>DM me <span class="word">${t.word}</span> on Instagram and I'll tell you the first thing I'd change for your type.</p>
+        <a class="btn" href="https://ig.me/m/${IG}" target="_blank" rel="noopener">Message me on Instagram →</a>
+        <a class="btn ghost" href="../coaching/">See 1:1 coaching</a>
+      </div>
+      <button class="btn ghost" type="button" id="again">Take it again</button>
+      <p class="foot">General wellness education, not medical advice. If you have a medical condition, take medication, are pregnant or have a history of disordered eating, talk to your GP before changing your diet.</p>
+    </section>`;
+  document.getElementById("again").onclick=()=>{step=0;picks=[];renderQ();window.scrollTo(0,0)};
+}
+
+document.getElementById("start").onclick=()=>{renderQ();window.scrollTo(0,0)};
+</script>
+</body>
+</html>
