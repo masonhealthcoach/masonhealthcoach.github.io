@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Wired, Burnt Out or Flat?</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/hero.jpg">
+<meta name="theme-color" content="#4A5A2E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mason Havenstein Wellness">
+<meta property="og:title" content="Wired, Burnt Out or Flat?">
+<meta property="og:description" content="Holistic lifestyle coaching for people who are always tired. Northern Beaches, Sydney.">
+<meta property="og:url" content="https://masonhealthcoach.github.io/tired/">
+<meta property="og:image" content="https://masonhealthcoach.github.io/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +88,7 @@ ol.tips span span{color:var(--muted);font-size:15px}
 .cta{background:var(--gum);color:var(--gum-ink);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:14px}
 .cta h2{font-size:clamp(28px,7.5vw,38px)}
 .cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border:1.5px solid currentColor;margin-top:0!important}
 .cta .word{font-family:var(--display);font-weight:900;font-size:1.2em;letter-spacing:.04em}
 .cta .small{color:var(--gum-ink);opacity:.8}
 .foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
@@ -304,6 +315,7 @@ function renderResult(name){
         <h2>Want the full plan?</h2>
         <p>DM me <span class="word">${t.word}</span> on Instagram and I'll send you what I'd fix first for your type.</p>
         <a class="btn" href="https://ig.me/m/${IG}" target="_blank" rel="noopener">Message me on Instagram →</a>
+        <a class="btn ghost" href="../coaching/" >See 1:1 coaching</a>
         <p class="small">@${IG}</p>
       </div>
       <button class="btn ghost" type="button" id="again">Take it again</button>
