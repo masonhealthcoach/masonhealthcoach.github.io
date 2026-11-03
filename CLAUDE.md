@@ -152,6 +152,15 @@ fonts: "Big Shoulders Display" (headings, uppercase, 900) + "Figtree" (body)
 - **Link previews:** og/twitter tags and `assets/icon.svg` favicon on every public page.
 - **Game Plan:** new "Needs your OK" section (group `approve`). Mason ticks or says go before Claude does those.
 
+**Built 3–4 Nov 2026 (overnight):**
+- **MailerLite automations (both OFF, awaiting Mason):** "Quiz welcome (5 emails)" id 203101914977535816 (trigger: joins any of the 3 quiz groups; days 0/2/4/7/10) and "Client onboarding (4 emails)" id 203102037529855086 (trigger: joins Clients). Mason wants to write quiz email 1 himself and approve every client email before anything sends. MailerLite account still needs activation (test sends blocked).
+- **Analytics report:** scheduled task `trig_01WwZpEFiRQWZX8MiL6NydXp`, every 2 days 6:47am Sydney, emails masonhealthcoach@gmail.com. Saved WITHOUT connectors; Mason must add vidIQ, Gmail, MailerLite, Stripe, Supermetrics in the claude.ai UI. Facebook (FB) and TikTok (TIKBA) need Supermetrics sign-in.
+- **Branch `overnight-updates` (not live):** his interview lines on Home (pull quote "I've been where you are. There is a way out.") and About, SEO title, canonical tags, noindex on welcome/wired/nervous-system, sitemap.xml, robots.txt, JSON-LD. Merge to main when Mason says "go website".
+- **Morning briefing doc:** https://claude.ai/artifact/7p79hV7uH7SVaH61pws9vC — email 1 draft in his voice, mates trial pack, Reel scripts, Instagram numbers, 14-day posting plan, legal/costs research, client phase guides, Ayurveda cheat sheet, and an "approve in one go" list.
+- **Decisions:** price stays $299 (no founding discount). Free 4-week trial for 2–3 mates: yes (disclose free trial next to testimonials). Before/after photos: yes, awaiting photos. Claude posting Reels and the 5-day challenge: parked. ManyChat link fixed by Mason. Zapier, Granola and Claude in Chrome connected.
+- **Interview with Mason (his words feed all copy):** done Q1–Q6. Best lines: "I've been where you are, and there is a way out." / "Sleep's the secret ingredient. It creates capacity." / "maybe there is a way to unravel all of this and fix it all up" / the 1sec app (socials locked 9pm to 4:30am) / isolation and no one knowing what was wrong were the worst parts. Next: Q7 "what does a good day look like for you now", then why you coach, what makes you different, what people should feel after a call.
+- **Instagram (3 Nov):** 427 followers, 65K views/30 days. Story-led Reel held best (37% watched, 35% skip). He posted a duplicate 4 min later (0 views) and three 140s Reels (0 views). One a day, 30–50s, no duplicates.
+
 **Next build steps once connected:**
 1. Create the Stripe payment link with redirect to `/welcome/`.
 2. Set up Calendly events and paste the link into `CALENDLY` in `welcome/index.html`. Add a "Book a call" button on the coaching page and quiz results.
