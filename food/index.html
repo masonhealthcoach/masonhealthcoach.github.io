@@ -322,7 +322,8 @@ function renderResult(name){
         <h2>Want it built around you?</h2>
         <p>DM me <span class="word">${t.word}</span> on Instagram and I'll tell you the first thing I'd change for your type.</p>
         <a class="btn" href="https://ig.me/m/${IG}" target="_blank" rel="noopener">Message me on Instagram →</a>
-        <a class="btn ghost" href="../coaching/">See 1:1 coaching</a>
+        <a class="btn ghost" href="${window.callHref?callHref():"https://ig.me/m/"+IG}" target="_blank" rel="noopener">Book a free 15-min call</a>
+        <p class="small">Or <a href="../coaching/" style="color:inherit">see how 1:1 coaching works</a></p>
       </div>
       <button class="btn ghost" type="button" id="again">Take it again</button>
       <p class="foot">General wellness education, not medical advice. If you have a medical condition, take medication, are pregnant or have a history of disordered eating, talk to your GP before changing your diet.</p>
@@ -332,5 +333,6 @@ function renderResult(name){
 
 document.getElementById("start").onclick=()=>{renderQ();window.scrollTo(0,0)};
 </script>
+<script src="../assets/links.js"></script>
 </body>
 </html>
