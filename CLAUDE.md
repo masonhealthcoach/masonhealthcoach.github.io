@@ -135,14 +135,22 @@ fonts: "Big Shoulders Display" (headings, uppercase, 900) + "Figtree" (body)
 
 | Tool | Status | What it's for |
 | --- | --- | --- |
-| Gmail, Google Drive, MailerLite, vidIQ, Canva, Notion | Connected | Leads and intakes, client files, email automation, Instagram stats and posting, design, notes |
-| Stripe, Calendly | Half-connected (sign-in not finished) | $299/month payment link → redirect to /welcome/; 60-min consult and 30-min check-in event types |
+| Gmail, Google Drive, MailerLite, vidIQ, Canva, Notion, Stripe (test mode only) | Connected | Leads and intakes, client files, email automation, Instagram stats and posting, design, notes |
+| Calendly | Half-connected (sign-in not finished) | Free 15-min call, 60-min consult and 30-min check-in event types |
 | Make (or Zapier) | Not yet | Bridge to ManyChat, Skool, Linktree, Stripe → MailerLite |
 | Google Calendar, Xero | Not yet | Xero after the ABN |
 | Grok | No connector exists | Use vidIQ plus web search instead |
 
 - **vidIQ Instagram account id:** `39524388680508784`.
 - **Email sequences doc** (Claude Docs): https://claude.ai/artifact/Qzuxf9Y4wgTueFhGv7traA. It holds the automation flow, a 5-email quiz welcome sequence (with a line for each result) and a 4-email client onboarding sequence, plus a cheat sheet of Cabral's focus for each goal.
+
+
+**Built 3 Nov 2026:**
+- **Stripe (test mode):** product "12-Week 1:1 Coaching (Founding Price)", $299 AUD/month, payment link https://buy.stripe.com/test_28EbIUgojcM1c2l7NJ6J200 → redirects to /welcome/. Account `acct_1UXbwf3UX7039JqZ`. Live mode needs Mason to activate the account (ABN + bank), then make the live link.
+- **MailerLite:** field `quiz_result`; groups Quiz - Energy type / Quiz - Body type / Quiz - Toxin barrel / Clients; one embedded form per quiz. Each quiz posts to its form (`mlSubscribe()` in the quiz JS, no-cors, fire and forget) alongside Web3Forms. Not yet confirmed live because this sandbox can't reach assets.mailerlite.com, so check subscribers after a real quiz run. No automations loaded yet.
+- **Free 15-min call:** buttons on home, coaching (hero, price box, FAQ) and all quiz results. One setting: `CALL_LINK` in `assets/links.js`. Empty = opens an Instagram DM.
+- **Link previews:** og/twitter tags and `assets/icon.svg` favicon on every public page.
+- **Game Plan:** new "Needs your OK" section (group `approve`). Mason ticks or says go before Claude does those.
 
 **Next build steps once connected:**
 1. Create the Stripe payment link with redirect to `/welcome/`.
