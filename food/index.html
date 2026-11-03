@@ -219,6 +219,17 @@ function topType(s){ return ORDER.reduce((b,k)=>s[k]>s[b]?k:b,ORDER[0]); }
 function goal(){ const gi=Q.findIndex(q=>q.goal); return Q[gi].a[picks[gi]][2]; }
 
 const IG = "mason_havenstein_wellness";
+// MailerLite: adds them to the email list for this quiz so the welcome emails start on their own.
+const ML_FORM = "https://assets.mailerlite.com/jsonp/2763848/forms/203099721162557366/subscribe";
+function mlSubscribe(name,email,result){
+  try{
+    const d=new URLSearchParams();
+    d.append("fields[email]",email); d.append("fields[name]",name); d.append("fields[quiz_result]",result);
+    d.append("ml-submit","1"); d.append("anticsrf","true");
+    fetch(ML_FORM,{method:"POST",mode:"no-cors",body:d}).catch(()=>{});
+  }catch(_){}
+}
+
 const WEB3FORMS_KEY = "75b67772-c155-457c-9c59-15891a043302";
 const app = document.getElementById("app");
 let step = 0, picks = [];
@@ -279,6 +290,7 @@ function renderGate(){
         body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`New food quiz lead: ${name} (${t.name}, ${g})`,from_name:"Mason's Food Type Quiz",
           name,email,food_type:t.name,goal:g,scores:`Air ${s.V} · Fire ${s.P} · Earth ${s.K}`,answers})}); }catch(_){}
     }
+    mlSubscribe(name,email,`${t.name} (${g})`);
     renderResult(name);
     window.scrollTo(0,0);
   };

@@ -182,6 +182,17 @@ function band(n){
 }
 
 const IG = "mason_havenstein_wellness";
+// MailerLite: adds them to the email list for this quiz so the welcome emails start on their own.
+const ML_FORM = "https://assets.mailerlite.com/jsonp/2763848/forms/203099721779119173/subscribe";
+function mlSubscribe(name,email,result){
+  try{
+    const d=new URLSearchParams();
+    d.append("fields[email]",email); d.append("fields[name]",name); d.append("fields[quiz_result]",result);
+    d.append("ml-submit","1"); d.append("anticsrf","true");
+    fetch(ML_FORM,{method:"POST",mode:"no-cors",body:d}).catch(()=>{});
+  }catch(_){}
+}
+
 const WEB3FORMS_KEY = "75b67772-c155-457c-9c59-15891a043302";
 const app = document.getElementById("app");
 let step = 0, picks = [];
@@ -242,6 +253,7 @@ function renderGate(){
         body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`New toxin quiz lead: ${name} (score ${n}, ${b.name})`,from_name:"Mason's Toxic Load Quiz",
           name,email,toxic_load_score:n,band:b.name,answers})}); }catch(_){}
     }
+    mlSubscribe(name,email,`${b.name} (score ${n})`);
     renderResult(name);
     window.scrollTo(0,0);
   };
