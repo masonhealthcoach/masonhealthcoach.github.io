@@ -48,6 +48,14 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 - Posting: no mental blocks any more; the limits are ideas and time. So Claude supplies ideas and scripts.
 - 3-year vision: living between **Bali (Canggu) and Bondi/Sydney**, with his brothers who already do this.
 
+### How Mason talks on camera (from watching 9 of his Reels, 4 Nov 2026)
+- Setting he owns: outdoors in the bush or sun, peeling and eating fruit with a pocket knife (kiwi, mango, mandarin), black or white singlet, cross necklace. Plays a "coach" character in a beanie and glasses in skits.
+- His words: "lads", "bros", "mate", "bloody", "buggered", "smoko", "servo pie", "Up&Go", "a hole in my pocket", "first things first", "the basics", "real food", "survival mode" vs "rest and repair mode", "protect your sleep like your life depends on it", "I've been there before mate, I was a tradie once", "you know what I mean?", "be kind, take care". Opens some videos with "alright ladies and gentlemen".
+- Structure that works: a relatable pain point or story in the first line, the basics as short commands, then "take the quiz in my bio" or "DM me".
+- Best hooks so far (lowest skip): "I lived on Monsters for years, and all I got from it was a hole in my pocket" (21% skip); "There's only three types of tired, and coffee only fixes one of them" (32%); "Do you feel buggered by 2:00?" (35%). Weakest: no hook, or videos over 80 seconds.
+- Swears in videos ("absolutely f***ed adrenals", "can of absolute s***") but says swearing isn't professional in DMs. Ask before swearing in anything Claude writes.
+- Content guardrails from review: don't tell people to bin sunscreen (sunscreen is TGA-regulated and skin cancer is common in Australia; say mineral/zinc sunscreen, shade and covering up instead). Avoid "I guarantee". Keep claims to "can help" and his own experience.
+
 ---
 
 ## 2. How to work with Mason
