@@ -233,4 +233,39 @@ Key teaching points used across the site:
 
 ---
 
+## 9. Mason's voice (use for every email, reply, caption and DM)
+
+Built from a voice interview with Mason on 4 Nov 2026. Follow it whenever writing as him.
+
+## Sample 1: DM reply to "I'm always tired"
+"Hey bro, yeah, we can have a 15-minute call, or if you want to pull the trigger and sign up, that's up to you. If you've taken one of my quizzes, there's a few tips at the end of those quizzes. But if you want to look in some deeper and get some better results, I'm more than happy to work with you, bro."
+- Greeting: "hey bro" (men), "hey" (women, drop bro)
+- Gets to the point fast, gives options, no pressure: "that's up to you"
+- Phrases: "pull the trigger", "more than happy to", "get some better results"
+- Warm, mate-to-mate, not salesy
+
+## Approved as-is (fix-my-line round 1): reply to "tried everything, nothing works"
+"hey bro, i hear you. i was exactly the same, tried every diet and supplement going and nothing stuck. it's never just one thing, it's the whole stack. sleep, food, stress, how you train. if you want, jump on a free 15 min call and i'll tell you straight if i can help"
+- lowercase, short, empathy first from his own experience, then one idea, then a no-pressure offer
+
+## Rules (voice Q2)
+- NO swearing in anything public or to clients/DMs. "doesn't sound professional"
+- NO emojis. "childish"
+- Sign-off: "thanks" (then name on emails)
+- Core frame: "bring you back". Not unlocking something new: you've felt good before, we strip the layers back to nature / equilibrium. "we're all optimal when we strip the layers back and bring it back to nature."
+- Never imply they've never felt good. "everyone's felt good and fine in their life"
+- "unlock" / "optimise" are OK but "bring back" is preferred
+
+## Voice Q3
+A (struggling, "feeling hopeless"): "yeah, I hear you. can I speak to that struggle for a moment? can you let me in? I'd love to help you. if you want to jump on a 15-minute call, whenever you're ready, I'll be more than happy to help. that's what I'm here for. that's what I've set out to do."
+B (excuses, "after Christmas"): "yeah, no worries, here when you need, take your time."
+- Gentle, inviting, never pushy. Lets excuse-makers go with zero pressure.
+
+## When someone sounds really low (Mason's way)
+Don't paste a number cold, it feels too forward. Share his own experience and mention Lifeline naturally:
+"yeah I've been there a few times myself. I've even got the names of those who didn't make it through those times tattooed on my body. I've reached out to lifeline, and to other people. the people at lifeline are beautiful, wonderful people, really validating. they make you feel like you're something worth waiting for."
+- Only if someone says they're in danger right now: give 000 / Lifeline 13 11 14 directly.
+
+---
+
 *Last updated 3 November 2026. Keep this file current whenever something meaningful changes.*
