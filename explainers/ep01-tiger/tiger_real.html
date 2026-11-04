@@ -249,6 +249,14 @@ hud.innerHTML=`
  <g id="stamp" opacity="0"><rect x="330" y="560" width="340" height="66" rx="8" fill="#C2452F"/><text id="stamptext" x="500" y="608" text-anchor="middle" class="hd" font-size="48" fill="#FBF8F2" letter-spacing="2">SAME ALARM</text></g>
  <g id="breath" opacity="0"><circle id="bcirc" cx="880" cy="430" r="50" fill="#6E8A3A" fill-opacity=".15" stroke="#6E8A3A" stroke-width="4"/><text id="btext" x="880" y="441" text-anchor="middle" class="hd" font-size="34" fill="#4A5A2E">IN</text>
   <text x="880" y="530" text-anchor="middle" font-size="17" fill="#231E19">in for 4</text><text x="880" y="554" text-anchor="middle" font-size="17" fill="#231E19">out for 8</text></g>
+ <defs><pattern id="haz" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="20" height="40" fill="#1A1412"/><rect x="20" width="20" height="40" fill="#E8B400"/></pattern></defs>
+ <rect id="flash" x="0" y="0" width="1000" height="760" fill="#E0412F" opacity="0"/>
+ <g id="danger" opacity="0">
+  <rect x="0" y="300" width="1000" height="22" fill="url(#haz)"/>
+  <rect x="0" y="322" width="1000" height="96" fill="#C2452F"/>
+  <rect x="0" y="418" width="1000" height="22" fill="url(#haz)"/>
+  <text x="500" y="398" text-anchor="middle" class="hd" font-size="92" fill="#FBF8F2" letter-spacing="10">DANGER</text>
+ </g>
  <text id="phase" x="20" y="700" class="hd" font-size="44" fill="#C2452F">CALM</text>
  <text id="sub" x="20" y="728" font-size="18" fill="#6B6157">rest and repair running</text>
  <g id="ticks"></g>
@@ -282,7 +290,7 @@ window.render=function(t){
   const v={};for(const k in TR)v[k]=track(TR[k],t); const alarm=clamp((v.adr-2)/6);
   // camera: slow orbit + push in during alarm
   const ang=lerp(-.38,.34,t/24); const dist=lerp(4.7,4.3,ease(clamp(t/24)))-alarm*.2;
-  const tgt=V(.62,.92,0); camera.position.set(tgt.x+Math.sin(ang)*dist,1.25+Math.sin(t*.3)*.05,tgt.z+Math.cos(ang)*dist); camera.lookAt(tgt);
+  const tgt=V(.62,.92,0); const shk=Math.max(0,1-Math.abs(t-4.1)/.7)*(t>3.85?1:0); camera.position.set(tgt.x+Math.sin(ang)*dist+Math.sin(t*61)*.035*shk,1.25+Math.sin(t*.3)*.05+Math.sin(t*47+1)*.03*shk,tgt.z+Math.cos(ang)*dist); camera.lookAt(tgt.x+Math.sin(t*53)*.02*shk,tgt.y,tgt.z);
   // human breathing + slight tension
   const br=Math.sin(t*(t>18?1.6:2.2+alarm*2))*.006; human.scale.set(1+br,1,1+br);
   const nc=mixc(CALM,HOT,alarm); nerveMats.forEach(m=>m.color.copy(nc));
@@ -325,6 +333,11 @@ window.render=function(t){
   tagDefs.forEach(([n,obj],i)=>{const wp=new THREE.Vector3();obj.getWorldPosition(wp);wp.project(camera);const x=(wp.x*.5+.5)*W,y=(-wp.y*.5+.5)*H;const [dx,dy]=offs[i];const g=tagEls[i];
     const ln=g.querySelector('line'),c=g.querySelector('circle'),tx=g.querySelector('text');ln.setAttribute('x1',x);ln.setAttribute('y1',y);ln.setAttribute('x2',x+dx);ln.setAttribute('y2',y+dy);c.setAttribute('cx',x);c.setAttribute('cy',y);
     tx.setAttribute('x',x+dx+(dx>0?6:-6));tx.setAttribute('y',y+dy+5);tx.setAttribute('text-anchor',dx>0?'start':'end');});
+  const fl=(u)=>u>=0?Math.exp(-u*9):0; const fv=Math.min(.85,fl(t-3.9)*.85+fl(t-4.22)*.6+fl(t-4.5)*.35);
+  $('flash').setAttribute('opacity',fv.toFixed(3));
+  const dOn=t>3.95&&t<5.6; const blink=dOn&&(Math.floor((t-3.95)/.18)%2==0||t>4.9);
+  $('danger').setAttribute('opacity',dOn?(blink?fade(t,3.95,5.6,.08):.15):0);
+  const dsc=1+.25*Math.exp(-(t-3.95)*10)*(t>3.95?1:0); $('danger').setAttribute('transform',`translate(500 370) scale(${dsc}) translate(-500 -370)`);
   document.getElementById('cta').setAttribute('opacity',clamp((t-21.5)/.5));
 };
 await document.fonts.ready; window.render(0); window.ready=true;
