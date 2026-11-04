@@ -32,6 +32,17 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 - Doesn't drink coffee. Doesn't use protein powder. Has a daily smoothie with dates and is trying to cut back on dairy and dates.
 - Training: heavy hypertrophy work, bulking from about 80 kg toward 85–88 kg on 3,000–3,500 cal of Cabral-style food.
 
+### Who Mason is underneath (rapid-fire interview, 4 Nov 2026)
+- Mates would call him: **funny, joyful, truthful**.
+- Looks up to: Jesus Christ first; Steve Irwin (passion and drive for what's good); Alexander the Great and great historical men; "a man who fights for what he loves behind him, not what he hates in front of him", unshakeable morals and faith.
+- What fires him up: people kept unaware of what's in their food (pesticides, additives) and a health system run for profit. In public content, aim that fire at things he can show (labels, ultra-processed food, pesticides, sugar marketing), and keep pointing clients to their GP for red flags.
+- Faith in content: **keep it out**. "This is about me helping people." Anyone welcome, any faith, creed or colour.
+- Clients: men first (tradies, desk workers, overcooked gym bros), because he's lived it, but he wants women too (they're most of the people who sign up online). Any age if they're willing.
+- Capacity: start with **3 one-to-one clients**, all online.
+- Hours: calls and replies **8am–6pm**. Clients can WhatsApp or email him between calls for fixes or clarifications; flag urgent client emails to him.
+- Work: butcher **Thu, Fri, Sat (12-hour days)**, Sunday is personal. So coaching calls fit **Mon–Wed**. Goal: drop the butcher days as coaching income grows.
+- 3-year vision: living between **Bali (Canggu) and Bondi/Sydney**, with his brothers who already do this.
+
 ---
 
 ## 2. How to work with Mason
