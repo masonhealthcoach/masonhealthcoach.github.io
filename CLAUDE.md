@@ -41,6 +41,11 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 - Capacity: start with **3 one-to-one clients**, all online.
 - Hours: calls and replies **8am–6pm**. Clients can WhatsApp or email him between calls for fixes or clarifications; flag urgent client emails to him.
 - Work: butcher **Thu, Fri, Sat (12-hour days)**, Sunday is personal. So coaching calls fit **Mon–Wed**. Goal: drop the butcher days as coaching income grows.
+- Money: the butcher job pays about **$720 for the 3 days a week** (~$3,100/month). Replacing all 3 days takes about **11 clients at $299** (each butcher day is about 3–4 clients).
+- Offer name: decide later. Client email: **masonhealthcoach@gmail.com**. A coaching WhatsApp number (separate from personal) is the plan.
+- Supplements: recommends **Dr Stephen Cabral's range** and other brands he personally uses (Biov8 among them). No affiliate codes yet.
+- His bros are digital nomads who also coach. Ryan would likely film a video or testimonial with him.
+- Posting: no mental blocks any more; the limits are ideas and time. So Claude supplies ideas and scripts.
 - 3-year vision: living between **Bali (Canggu) and Bondi/Sydney**, with his brothers who already do this.
 
 ---
