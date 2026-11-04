@@ -56,6 +56,11 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 - Swears in videos ("absolutely f***ed adrenals", "can of absolute s***") but says swearing isn't professional in DMs. Ask before swearing in anything Claude writes.
 - Content guardrails from review: don't tell people to bin sunscreen (sunscreen is TGA-regulated and skin cancer is common in Australia; say mineral/zinc sunscreen, shade and covering up instead). Avoid "I guarantee". Keep claims to "can help" and his own experience.
 
+### Life Library (Notion)
+- **Mason's Life Library:** https://app.notion.com/p/1aa7c3545fbf4611a81f2506286d65cd (data source `collection://46ceb86c-7c4d-4e43-b080-089ca6af7ec2`). Private Notion database of his stories, beliefs, routines, lessons, Cabral teachings, quotes, and later books/podcasts/YouTube he learns from.
+- Properties: Name, Type, Topics, Source, Key line, Use for (Reel/Email/Client guide/Website/Calls), Public OK, Added.
+- **Every time Mason shares a story, lesson or something he learnt, file it here in his words.** Pull from it before writing any content. Only use entries with Public OK ticked in public content.
+
 ---
 
 ## 2. How to work with Mason
