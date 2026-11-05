@@ -39,7 +39,7 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 - Faith in content: **keep it out**. "This is about me helping people." Anyone welcome, any faith, creed or colour.
 - Clients: men first (tradies, desk workers, overcooked gym bros), because he's lived it, but he wants women too (they're most of the people who sign up online). Any age if they're willing.
 - Capacity: start with **3 one-to-one clients**, all online.
-- Hours: calls and replies **8am–6pm**. Clients can WhatsApp or email him between calls for fixes or clarifications; flag urgent client emails to him.
+- Hours: replies **8am–6pm**. **Bookable calls: Mon–Wed 10am–6pm only. Thu/Fri 10am–6pm by request only. Never Saturday or Sunday** (updated 5 Nov 2026). Clients can WhatsApp or email him between calls for fixes or clarifications; flag urgent client emails to him.
 - Work: butcher **Thu, Fri, Sat (12-hour days)**, Sunday is personal. So coaching calls fit **Mon–Wed**. Goal: drop the butcher days as coaching income grows.
 - Money: the butcher job pays about **$720 for the 3 days a week** (~$3,100/month). Replacing all 3 days takes about **11 clients at $299** (each butcher day is about 3–4 clients).
 - Offer name: decide later. Client email: **masonhealthcoach@gmail.com**. A coaching WhatsApp number (separate from personal) is the plan.
@@ -165,7 +165,7 @@ fonts: "Big Shoulders Display" (headings, uppercase, 900) + "Figtree" (body)
 | Tool | Status | What it's for |
 | --- | --- | --- |
 | Gmail, Google Drive, MailerLite, vidIQ, Canva, Notion, Stripe (test mode only) | Connected | Leads and intakes, client files, email automation, Instagram stats and posting, design, notes |
-| Calendly | Half-connected (sign-in not finished) | Free 15-min call, 60-min consult and 30-min check-in event types |
+| Calendly | Half-connected (sign-in not finished). No Claude connector, so Mason creates events and pastes the link | Free 15-min call (public), 60-min consult and 30-min check-in. Availability Mon–Wed 10am–6pm. Settings in Notion: Practice Toolkit → Booking Setup. When Mason sends the link: paste into `CALL_LINK` in `assets/links.js` and `CALENDLY` in `welcome/index.html` |
 | Make (or Zapier) | Not yet | Bridge to ManyChat, Skool, Linktree, Stripe → MailerLite |
 | Google Calendar, Xero | Not yet | Xero after the ABN |
 | Grok | No connector exists | Use vidIQ plus web search instead |
