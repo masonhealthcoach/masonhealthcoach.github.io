@@ -190,6 +190,8 @@ fonts: "Big Shoulders Display" (headings, uppercase, 900) + "Figtree" (body)
 - **Interview with Mason (his words feed all copy):** done Q1–Q6. Best lines: "I've been where you are, and there is a way out." / "Sleep's the secret ingredient. It creates capacity." / "maybe there is a way to unravel all of this and fix it all up" / the 1sec app (socials locked 9pm to 4:30am) / isolation and no one knowing what was wrong were the worst parts. Next: Q7 "what does a good day look like for you now", then why you coach, what makes you different, what people should feel after a call.
 - **Instagram (3 Nov):** 427 followers, 65K views/30 days. Story-led Reel held best (37% watched, 35% skip). He posted a duplicate 4 min later (0 views) and three 140s Reels (0 views). One a day, 30–50s, no duplicates.
 
+**Marketing plan (7 Nov 2026):** https://claude.ai/artifact/94nLdktddSrqSXzw713bfG ("First 11 Clients"). Diagnosis: 48,917 reached / 1,554 engaged in 30 days but only ~3 quiz results and 0 calls, so the leak is conversion, not reach. Six moves: one CTA (comment QUIZ) on every Reel, warm network (50 names, 10 DMs/day, 3 free trials), reply/DM everyone who engages, borrow audiences (Ryan collabs, local gyms/physios, Northern Beaches groups, podcasts), proof from trial mates, and after the ABN: Google Business Profile + $10–15/day Meta ads to the quiz. Includes 7 Reel scripts, DM scripts, a 14-day sprint and a weekly scoreboard (Mason sends numbers every Monday).
+
 **Next build steps once connected:**
 1. Create the Stripe payment link with redirect to `/welcome/`.
 2. Set up Calendly events and paste the link into `CALENDLY` in `welcome/index.html`. Add a "Book a call" button on the coaching page and quiz results.
