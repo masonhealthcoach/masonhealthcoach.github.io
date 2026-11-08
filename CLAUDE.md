@@ -165,7 +165,7 @@ fonts: "Big Shoulders Display" (headings, uppercase, 900) + "Figtree" (body)
 | Tool | Status | What it's for |
 | --- | --- | --- |
 | Gmail, Google Drive, MailerLite, vidIQ, Canva, Notion, Stripe (test mode only) | Connected | Leads and intakes, client files, email automation, Instagram stats and posting, design, notes |
-| Calendly | Half-connected (sign-in not finished). No Claude connector, so Mason creates events and pastes the link | Free 15-min call (public), 60-min consult and 30-min check-in. Availability Mon–Wed 10am–6pm. Settings in Notion: Practice Toolkit → Booking Setup. When Mason sends the link: paste into `CALL_LINK` in `assets/links.js` and `CALENDLY` in `welcome/index.html` |
+| Calendly | Connected (8 Nov 2026). Events: Free 15-min call (calendly.com/masonhealthcoach/free-15-min-call) and First coaching consult 60 min, both Google Meet, Mon–Wed 10am–6pm. Default 30-min Zoom event switched off | Free 15-min call (public), 60-min consult and 30-min check-in. Availability Mon–Wed 10am–6pm. Settings in Notion: Practice Toolkit → Booking Setup. When Mason sends the link: paste into `CALL_LINK` in `assets/links.js` and `CALENDLY` in `welcome/index.html` |
 | Make (or Zapier) | Not yet | Bridge to ManyChat, Skool, Linktree, Stripe → MailerLite |
 | Google Calendar, Xero | Not yet | Xero after the ABN |
 | Grok | No connector exists | Use vidIQ plus web search instead |
