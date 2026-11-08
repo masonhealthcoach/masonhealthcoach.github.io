@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=Caveat:wght@600&display=swap">
 <style>
 /* Layout: one phone-first column, read top to bottom like a trail log: hero → story → what I work on → who it's for → training → next step */
 :root{
@@ -58,9 +58,9 @@ p{margin:0;max-width:62ch}
 .story{border-left:3px solid var(--ochre);padding-left:18px;display:flex;flex-direction:column;gap:14px}
 .pull{font-family:var(--display);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.05;text-transform:uppercase;color:var(--gum)}
 
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:460px){.pillars{grid-template-columns:1fr}}
-.pillar{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillars{display:flex;flex-direction:column}
+.pillar{display:flex;flex-direction:column;gap:4px;padding:16px 0;border-top:1px solid var(--line);min-width:0}
+.pillar:last-child{border-bottom:1px solid var(--line)}
 .pillar strong{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1}
 .pillar p{font-size:15px;color:var(--muted)}
 
@@ -94,6 +94,8 @@ body{padding-top:0}
 .hero .btn.ghost{background:transparent;color:#FBF8F2;border-color:rgba(243,247,242,.6)}
 .hero .who span{border-color:rgba(243,247,242,.45)}
 .photo{border-radius:20px;overflow:hidden;margin:0}
+.sign{font-family:"Caveat",cursive;font-size:34px;line-height:1;color:var(--fg);margin-top:4px}
+.sign small{display:block;font-family:var(--body);font-size:13px;color:var(--muted);margin-top:6px}
 .photo img{display:block;width:100%;height:auto}
 .photo.art{background:#F5EFD4;margin-bottom:-24px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -136,7 +138,6 @@ a.card:hover{border-color:var(--gum)}
   </section>
 
   <section>
-    <span class="eyebrow">My story</span>
     <h2>I was that tired guy</h2>
     <figure class="photo"><img src="img/dogs-water.jpg" alt="Mason smiling with his dog by the water" loading="lazy"></figure>
     <div class="story">
@@ -144,22 +145,27 @@ a.card:hover{border-color:var(--gum)}
       <p>I tried the extremes. A full year of carnivore felt great at the start, and terrible by the end. That's when I worked out <u class="ul">no single diet fixes it</u>. You have to look at the whole picture.</p>
       <p class="pull">Your energy problem is never just one thing.</p>
       <p>So I spent years studying holistic health under the Paul Chek system, and I'm now training as an Integrative Health Practitioner with Dr Stephen Cabral. Everything I teach, <mark class="hl">I've tested on myself first.</mark></p>
+      <p class="sign">Mason<small>Written from Warriewood, Nov 2026</small></p>
     </div>
     <a class="btn ghost" href="about/">Read my full story →</a>
   </section>
 
+  <div class="pair">
+    <img src="img/hat-bush.jpg" alt="Mason in his leather bush hat out in the bush" loading="lazy">
+    <img src="img/kitchen.jpg" alt="Mason holding his dog in the kitchen" loading="lazy">
+  </div>
+
   <section id="quizzes">
-    <span class="eyebrow">Free quizzes · built on Dr Stephen Cabral's teachings</span>
     <h2>Start with a quiz</h2>
+    <p class="muted">Free, about 2 minutes each. Built on what I've learnt from Dr Stephen Cabral.</p>
     <div class="cards">
-      <a class="card" href="tired/"><span class="num">01</span><span><b>Your energy type</b><small>Wired, crashing, burnt out or flat?</small></span><span class="go">Start →</span></a>
-      <a class="card" href="food/"><span class="num">02</span><span><b>Your food type</b><small>What your body type should eat, plus your plate to lose, maintain or gain</small></span><span class="go">Start →</span></a>
-      <a class="card" href="toxins/"><span class="num">03</span><span><b>Your toxic load</b><small>How full is your barrel? Get your score</small></span><span class="go">Start →</span></a>
+      <a class="card" href="tired/"><span><b>Your energy type</b><small>Wired, crashing, burnt out or flat?</small></span><span class="go">Start →</span></a>
+      <a class="card" href="food/"><span><b>Your food type</b><small>What your body type should eat, plus your plate to lose, maintain or gain</small></span><span class="go">Start →</span></a>
+      <a class="card" href="toxins/"><span><b>Your toxic load</b><small>How full is your barrel? Get your score</small></span><span class="go">Start →</span></a>
     </div>
   </section>
 
   <section>
-    <span class="eyebrow">What we work on</span>
     <h2>The four things draining you</h2>
     <div class="pillars">
       <div class="pillar"><strong>Food</strong><p>What you eat, when you eat and how well you digest it. Real food, not another diet.</p></div>
@@ -169,15 +175,7 @@ a.card:hover{border-color:var(--gum)}
     </div>
   </section>
 
-  <div class="pair">
-    <img src="img/hat-bush.jpg" alt="Mason in his leather bush hat out in the bush" loading="lazy">
-    <img src="img/kitchen.jpg" alt="Mason holding his dog in the kitchen" loading="lazy">
-  </div>
-
-  <figure class="photo art"><img src="img/nature-pill.jpg?v=2" alt="Illustration of a giant capsule filled with vegetables, fruit, sun and sea, with a doctor looking up at it" loading="lazy"></figure>
-
   <section>
-    <span class="eyebrow">1:1 coaching</span>
     <h2>12 weeks, 3 phases</h2>
     <div class="phases">
       <div class="phase"><small>Wk 1–4</small><strong>Reset</strong></div>
@@ -191,7 +189,6 @@ a.card:hover{border-color:var(--gum)}
   </section>
 
   <section>
-    <span class="eyebrow">Training</span>
     <h2>Where it comes from</h2>
     <ul class="list">
       <li><b>CHEK Holistic Lifestyle Coach</b><span>Levels 1 &amp; 2</span></li>
@@ -202,7 +199,6 @@ a.card:hover{border-color:var(--gum)}
   </section>
 
   <section class="cta bush">
-    <span class="eyebrow" style="color:#FBF8F2;opacity:.8">Start here</span>
     <h2>Find out why you're flat</h2>
     <p>Ten questions. You get your energy type and three things to change this week.</p>
     <a class="btn" href="tired/">Take the quiz →</a>
