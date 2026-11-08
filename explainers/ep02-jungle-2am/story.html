@@ -94,6 +94,35 @@ const phoneLight=new THREE.PointLight(0x9CCBFF,1.2,2.2); phoneLight.position.set
 const moon=new THREE.DirectionalLight(0x8FAEE0,2.6); moon.position.set(-4,3.2,-.2); moon.castShadow=true; moon.shadow.mapSize.set(1536,1536); Object.assign(moon.shadow.camera,{left:-3,right:3,top:3,bottom:-3,near:.5,far:12}); bedroom.add(moon); bedroom.add(moon.target);
 bedroom.add(new THREE.HemisphereLight(0x4A5C88,0x0C0C12,.9));
 
+
+// ---------- traffic ----------
+const traffic=new THREE.Group(); scene.add(traffic);
+const road=new THREE.Mesh(new THREE.PlaneGeometry(30,60),new THREE.MeshStandardMaterial({color:'#1A1B1F',roughness:.85})); road.rotation.x=-Math.PI/2; road.receiveShadow=true; traffic.add(road);
+for(let i=0;i<30;i++)for(const x of [-1.8,1.8]){const l=new THREE.Mesh(new THREE.PlaneGeometry(.1,1.2),new THREE.MeshBasicMaterial({color:'#8A8578'}));l.rotation.x=-Math.PI/2;l.position.set(x,.01,-i*3+4);traffic.add(l);}
+const carCols=['#2B3442','#5A5F66','#1E1E22','#6E2A2A','#D8D6D0','#2F4A3A'];
+function car(x,z,col,rot=0){const g=new THREE.Group();const m=new THREE.MeshStandardMaterial({color:col,roughness:.35,metalness:.6});
+ const b=new THREE.Mesh(new THREE.BoxGeometry(1.8,.6,4.2),m);b.position.y=.55;g.add(b);
+ const c=new THREE.Mesh(new THREE.BoxGeometry(1.6,.5,2.2),new THREE.MeshStandardMaterial({color:'#11141A',roughness:.1,metalness:.8}));c.position.set(0,1.05,-.2);g.add(c);
+ for(const sx of [-.7,.7]){const tl=new THREE.Mesh(new THREE.BoxGeometry(.35,.12,.05),new THREE.MeshBasicMaterial({color:'#FF2A1E'}));tl.position.set(sx,.72,2.11);g.add(tl);}
+ const glow=new THREE.PointLight(0xFF2A1E,2.2,4.5);glow.position.set(0,.75,2.6);g.add(glow);
+ for(const sx of [-.8,.8])for(const sz of [-1.4,1.4]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.33,.33,.25,18),new THREE.MeshStandardMaterial({color:'#0C0C0C'}));w.rotation.z=Math.PI/2;w.position.set(sx,.33,sz);g.add(w);}
+ g.position.set(x,0,z);g.rotation.y=rot;g.traverse(o=>{if(o.isMesh)o.castShadow=true;});traffic.add(g);return g;}
+let ci=0; for(const z of [-4.6,-10,-15.5,-21])for(const x of [-3.6,0,3.6]){if(!(x===0&&z===-5.5)||true)car(x+(Math.sin(z*x)*.2),z,carCols[(ci++)%carCols.length]);}
+car(-3.6,0,carCols[2]); car(3.6,.5,carCols[4]);
+for(let i=0;i<6;i++){const p=new THREE.Mesh(new THREE.CylinderGeometry(.06,.08,6,8),new THREE.MeshStandardMaterial({color:'#2A2A2E'}));p.position.set(6,3,-i*8);traffic.add(p);const lamp=new THREE.PointLight(0xFFA040,3,12);lamp.position.set(5.2,5.8,-i*8);traffic.add(lamp);const bulb=ball(.12,new THREE.MeshBasicMaterial({color:'#FFC070'}),V(5.2,5.9,-i*8));traffic.add(bulb);}
+// our car interior around the driver at the origin
+const dash=new THREE.Mesh(new THREE.BoxGeometry(1.6,.35,.6),new THREE.MeshStandardMaterial({color:'#16171A',roughness:.6})); dash.position.set(.3,.95,-.75); traffic.add(dash);
+const wheel=new THREE.Mesh(new THREE.TorusGeometry(.19,.022,12,40),new THREE.MeshStandardMaterial({color:'#0E0E10',roughness:.5})); wheel.position.set(0,1.12,-.42); wheel.rotation.x=-.45; traffic.add(wheel);
+const seat=new THREE.Mesh(new THREE.BoxGeometry(.55,.12,.55),new THREE.MeshStandardMaterial({color:'#24262B'})); seat.position.set(0,.44,.05); traffic.add(seat);
+const seatB=new THREE.Mesh(new THREE.BoxGeometry(.55,.8,.12),new THREE.MeshStandardMaterial({color:'#24262B'})); seatB.position.set(0,.85,.36); seatB.rotation.x=-.12; traffic.add(seatB);
+for(const x of [-.55,1.15]){const pil=new THREE.Mesh(new THREE.BoxGeometry(.06,.06,.9),new THREE.MeshStandardMaterial({color:'#0E0F12'}));pil.position.set(x,1.45,-.75);pil.rotation.x=.75;traffic.add(pil);}
+const roof=new THREE.Mesh(new THREE.BoxGeometry(1.8,.04,1.3),new THREE.MeshStandardMaterial({color:'#1A1B1F'})); roof.position.set(.3,1.78,-.4); roof.scale.z=.5; traffic.add(roof);
+const dashClock=new THREE.Mesh(new THREE.PlaneGeometry(.2,.1),new THREE.MeshBasicMaterial({map:textTex('8:52','#7FD0FF')})); dashClock.position.set(.45,1.13,-.46); dashClock.rotation.x=-.5; traffic.add(dashClock);
+traffic.add(new THREE.HemisphereLight(0x4A4A66,0x0A0A0C,.7));
+const tKey=new THREE.DirectionalLight(0xFFB070,1.4); tKey.position.set(5,6,-3); traffic.add(tKey); traffic.add(tKey.target);
+const tRed=new THREE.PointLight(0xFF3020,2.5,4); tRed.position.set(0,1.2,-1.6); traffic.add(tRed);
+const tFill=new THREE.PointLight(0xFFD8B0,1.6,3); tFill.position.set(.7,1.9,.7); traffic.add(tFill);
+
 /* =============== HUMAN =============== */
 const human=new THREE.Group(); scene.add(human);
 const BONE=new THREE.MeshStandardMaterial({color:'#E9E1D0',roughness:.55});
@@ -105,7 +134,8 @@ skel.add(ball(.12,BONE,V(0,.98,-.01),[1.25,.5,.7])); skel.add(capsuleBetween(V(0
 for(const sx of [-1,1])skel.add(capsuleBetween(V(.03*sx,1.48,.06),V(.18*sx,1.49,0),.009,BONE));
 skel.add(ball(.098,BONE,V(0,1.785,-.01),[.9,1.02,1.05])); skel.add(ball(.06,BONE,V(0,1.7,.035),[1,.6,.9]));
 const REST={shL:V(-.19,1.47,-.01),shR:V(.19,1.47,-.01),elL:V(-.24,1.2,.0),elR:V(.24,1.2,.0),waL:V(-.27,.97,.04),waR:V(.27,.97,.04),hiL:V(-.09,.94,-.01),hiR:V(.09,.94,-.01),knL:V(-.1,.52,.01),knR:V(.1,.52,.01),anL:V(-.1,.09,-.01),anR:V(.1,.09,-.01)};
-for(const [a,b,r] of [["shL","elL",.016],["shR","elR",.016],["elL","waL",.012],["elR","waR",.012],["hiL","knL",.022],["hiR","knR",.022],["knL","anL",.017],["knR","anR",.017]]){skel.add(capsuleBetween(REST[a],REST[b],r,BONE));skel.add(ball(r*1.7,BONE,REST[b]));}
+const skelLegs=new THREE.Group(); skel.add(skelLegs);
+for(const [a,b,r] of [["shL","elL",.016],["shR","elR",.016],["elL","waL",.012],["elR","waR",.012],["hiL","knL",.022],["hiR","knR",.022],["knL","anL",.017],["knR","anR",.017]]){const grp=(a.startsWith('hi')||a.startsWith('kn')||a.startsWith('sh')||a.startsWith('el'))?skelLegs:skel;grp.add(capsuleBetween(REST[a],REST[b],r,BONE));grp.add(ball(r*1.7,BONE,REST[b]));}
 const glowMat=()=>new THREE.MeshStandardMaterial({color:'#6E8A3A',emissive:'#6E8A3A',emissiveIntensity:.6});
 const heart=ball(.035,new THREE.MeshStandardMaterial({color:'#C2452F',emissive:'#C2452F',emissiveIntensity:.5}),V(.03,1.33,.035),[1,1.15,.9]); skel.add(heart);
 const adrMat=glowMat(); const adrL=new THREE.Mesh(new THREE.ConeGeometry(.02,.034,16),adrMat); adrL.position.set(-.06,1.13,-.04); const adrR=adrL.clone(); adrR.position.x=.06; skel.add(adrL,adrR);
@@ -114,7 +144,7 @@ const brainMat=glowMat(); const brain=ball(.06,brainMat,V(0,1.8,.02),[1.15,.85,1
 const nervePaths=[[V(0,1.78,.03),V(0,1.66,-.01),V(0,1.5,-.03),V(0,1.3,-.045),V(0,1.16,-.04),V(-.06,1.13,-.04)],[V(0,1.78,.03),V(0,1.66,-.01),V(0,1.5,-.03),V(0,1.3,-.045),V(0,1.16,-.04),V(.06,1.13,-.04)],
  [V(0,1.5,-.03),V(.03,1.4,.0),V(.03,1.33,.035)],[V(0,1.5,-.03),V(-.12,1.46,-.02),V(-.19,1.45,-.01),V(-.24,1.2,.0),V(-.27,.97,.04)],[V(0,1.5,-.03),V(.12,1.46,-.02),V(.19,1.45,-.01),V(.24,1.2,.0),V(.27,.97,.04)],
  [V(0,1.0,-.04),V(-.09,.92,-.01),V(-.1,.52,.01),V(-.1,.1,-.01)],[V(0,1.0,-.04),V(.09,.92,-.01),V(.1,.52,.01),V(.1,.1,-.01)]].map(p=>new THREE.CatmullRomCurve3(p));
-const nerveMat=new THREE.MeshBasicMaterial({color:'#6E8A3A'}); nervePaths.forEach((c,i)=>skel.add(new THREE.Mesh(new THREE.TubeGeometry(c,70,i<2?.0065:.0045,8),nerveMat)));
+const nerveMat=new THREE.MeshBasicMaterial({color:'#6E8A3A'}); nervePaths.forEach((c,i)=>(i>=3?skelLegs:skel).add(new THREE.Mesh(new THREE.TubeGeometry(c,70,i<2?.0065:.0045,8),nerveMat)));
 const pulseMat=new THREE.MeshBasicMaterial({color:'#FF5A3C'}); const pulses=[];for(let i=0;i<18;i++){const s=new THREE.Mesh(new THREE.SphereGeometry(.013,10,8),pulseMat);skel.add(s);pulses.push(s);}
 // body (clothed or x-ray) as one metaball mesh
 const clothMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.75,metalness:0});
@@ -125,7 +155,7 @@ const BC=V(0,.96,0),BS=1.0;
 const body=new MarchingCubes(92,clothMat,false,true,180000); body.scale.setScalar(BS); body.position.copy(BC); body.castShadow=true; human.add(body);
 const C_SKIN=new THREE.Color('#D2A07F'),C_SHIRT=new THREE.Color('#3F4B3A'),C_PANTS=new THREE.Color('#25282E'),C_BOOT=new THREE.Color('#2B231D'),C_HAIR=new THREE.Color('#3A2A1E');
 const rotX=(v,a)=>V(v.x,v.y*Math.cos(a)-v.z*Math.sin(a),v.y*Math.sin(a)+v.z*Math.cos(a));
-function buildBody(ph,amp,freeze){
+function buildBody(ph,amp,freeze,seated=false){
  body.reset(); const add=(p,r,c)=>mcAdd(body,BC,BS,p,r,c), seg=(a,b,r0,r1,c)=>mcSeg(body,BC,BS,a,b,r0,r1,c);
  const bob=Math.abs(Math.sin(ph))*.02*amp; const o=V(0,bob,0);
  const J={}; for(const k in REST)J[k]=REST[k].clone().add(o);
@@ -137,6 +167,7 @@ function buildBody(ph,amp,freeze){
   J['el'+s]=el; J['wa'+s]=wr;
  }
  if(freeze){for(const k in REST)J[k]=REST[k].clone();}
+ if(seated){for(const s of ['L','R']){J['kn'+s]=J['hi'+s].clone().add(V(0,.02,.42));J['an'+s]=J['kn'+s].clone().add(V(0,-.43,-.02));J['el'+s]=J['sh'+s].clone().add(V(0,-.2,.16));J['el'+s].x=REST['el'+s].x;J['wa'+s]=J['el'+s].clone().add(V(0,.05,.25));J['wa'+s].x=REST['wa'+s].x*.75;}}
  add(V(0,1.775,.01).add(o),.106,C_SKIN); add(V(0,1.69,.04).add(o),.066,C_SKIN); add(V(0,1.82,-.02).add(o),.1,C_HAIR); seg(V(0,1.56,-.01).add(o),V(0,1.66,0).add(o),.058,.054,C_SKIN);
  for(const s of ["L","R"]){const sx=s=="L"?-1:1;
   add(V(.075*sx,1.39,.005).add(o),.136,C_SHIRT); add(V(.06*sx,1.22,.01).add(o),.122,C_SHIRT); add(V(.07*sx,1.03,0).add(o),.122,C_PANTS);
@@ -215,7 +246,7 @@ hud.innerHTML=`<defs><pattern id="haz" width="44" height="44" patternUnits="user
 <text id="note" x="60" y="1850" class="mono" font-size="22" fill="#8C857A" opacity="0">Stress signal shown in red, invisible to the eye</text>
 <g id="danger" opacity="0"><rect x="0" y="1380" width="1080" height="26" fill="url(#haz)"/><rect x="0" y="1406" width="1080" height="130" fill="#C2452F"/><rect x="0" y="1536" width="1080" height="26" fill="url(#haz)"/>
  <text x="540" y="1508" text-anchor="middle" class="hd" font-size="124" fill="#FBF8F2" letter-spacing="14">DANGER</text></g>
-<g id="stamp" opacity="0"><rect x="250" y="1360" width="580" height="110" rx="10" fill="#C2452F"/><text x="540" y="1440" text-anchor="middle" class="hd" font-size="84" fill="#FBF8F2" letter-spacing="4">SAME ALARM</text></g>
+<g id="stamp" opacity="0"><rect x="250" y="1360" width="580" height="110" rx="10" fill="#C2452F"/><text id="stampt" x="540" y="1440" text-anchor="middle" class="hd" font-size="84" fill="#FBF8F2" letter-spacing="4">SAME ALARM</text></g>
 <g id="tag" opacity="0"><text id="tagt" x="1020" y="1840" text-anchor="end" class="mono" font-size="28" font-weight="700" fill="#F2EDE4" letter-spacing="4">THE JUNGLE</text></g>
 <g id="endc" opacity="0">
  <text x="540" y="820" text-anchor="middle" class="hd" font-size="170" fill="#F2EDE4">WIRED</text>
@@ -226,8 +257,9 @@ hud.innerHTML=`<defs><pattern id="haz" width="44" height="44" patternUnits="user
 </g>`;
 const bars=['b1','b2'].map((id,k)=>{const g=document.getElementById(id);const arr=[];for(let j=0;j<10;j++){const r=document.createElementNS(NS,'rect');r.setAttribute('x',60+j*30);r.setAttribute('y',1675+k*80);r.setAttribute('width',22);r.setAttribute('height',36);r.setAttribute('rx',3);g.appendChild(r);arr.push(r);}return arr;});
 // captions: words appear one by one; *word* = highlighted
-const CAPS=[[0.2,2.4,"You're walking through the jungle."],[2.5,4.6,"Then... a *tiger.*"],[4.7,6.6,"Your brain hits the *alarm.*"],[6.7,9.0,"Adrenaline. Cortisol. Heart *pounding.*"],
- [9.1,11.2,"Now it's 2am. No tiger."],[11.3,13.4,"Just bills. Emails. *Your boss.*"],[13.5,15.2,"*Same alarm.*"],[15.3,17.0,"Your body can't tell the *difference.*"],[17.1,19.9,"That's why you're *wired and tired.*"]];
+const CAPS=[[0.2,2.4,"You're walking through the jungle."],[2.5,4.6,"Then... a *tiger.*"],[4.7,6.5,"Your brain hits the *alarm.*"],[6.6,8.4,"Adrenaline. Cortisol. Heart *pounding.*"],
+ [8.6,10.5,"Now it's 2am. No tiger."],[10.6,12.4,"Just bills. Emails. *Your boss.*"],[12.6,14.5,"Or you're stuck in traffic. Late. Again."],[14.6,16.5,"No tiger. *Same alarm.*"],
+ [16.6,19.3,"*Same stress.* Your body can't tell the difference."],[19.5,22.9,"That's why you're *wired and tired.*"]];
 const capG=document.getElementById('caption');
 function drawCaption(t){capG.innerHTML='';const c=CAPS.find(c=>t>=c[0]&&t<c[1]);if(!c)return;const words=c[2].split(' ');const dur=(c[1]-c[0])*.72;const per=dur/words.length;
  const lines=[[]];let len=0;words.forEach(w=>{const L=w.replace(/\*/g,'').length;if(len+L>17&&lines[lines.length-1].length){lines.push([]);len=0;}lines[lines.length-1].push(w);len+=L+1;});
@@ -249,7 +281,7 @@ const labelEls=labelDefs.map(()=>{const g=document.createElementNS(NS,'g');g.inn
 
 /* =============== TIMELINE =============== */
 const CALM=new THREE.Color('#6E8A3A'),HOT=new THREE.Color('#FF3B2A');
-function alarmAt(t){if(t<3.85)return 0;if(t<9)return clamp((t-3.85)/.6);if(t<11.2)return 0;if(t<13.5)return clamp((t-11.2)/1.1);if(t<17)return 1;return 1;}
+function alarmAt(t){if(t<3.85)return 0;if(t<8.5)return clamp((t-3.85)/.6);if(t<10.6)return 0;if(t<12.5)return clamp((t-10.6)/1.0);if(t<13.6)return 0;return clamp((t-13.6)/1.4);}
 function setXray(on,a=1){body.material=on?xrayMat:clothMat;xrayMat.uniforms.uA.value=a;skel.visible=on;}
 function setAlarm(a,t){const c=CALM.clone().lerp(HOT,a);nerveMat.color.copy(c);[brainMat,adrMat].forEach(m=>{m.color.copy(c);m.emissive.copy(c);m.emissiveIntensity=.5+a*1.6;});
  const hr=lerp(62,138,a);const beat=Math.pow(Math.max(0,Math.sin(Math.PI*2*(hr/60)*t)),6);heart.scale.setScalar(1+beat*(.25+a*.4));heart.material.emissiveIntensity=.4+beat*1.6;
@@ -257,11 +289,11 @@ function setAlarm(a,t){const c=CALM.clone().lerp(HOT,a);nerveMat.color.copy(c);[
  return hr;}
 const $=id=>document.getElementById(id);
 window.render=function(t){
- let shot; if(t<5.0)shot='jungle';else if(t<9.0)shot='xjungle';else if(t<13.5)shot='bed';else if(t<17.0)shot=(Math.floor((t-13.5)/.58)%2==0)?'xjungle2':'xbed';else shot='end';
- jungle.visible=shot.includes('jungle'); bedroom.visible=shot.includes('bed'); human.visible=shot!=='end'; tiger.visible=false; cards.forEach(c=>c.visible=false);
+ let shot; if(t<5.0)shot='jungle';else if(t<8.5)shot='xjungle';else if(t<12.5)shot='bed';else if(t<19.4)shot='traffic';else shot='end';
+ jungle.visible=shot.includes('jungle'); bedroom.visible=shot.includes('bed'); traffic.visible=shot==='traffic'; skelLegs.visible=shot!=='traffic'; human.visible=shot!=='end'; tiger.visible=false; cards.forEach(c=>c.visible=false);
  const a=alarmAt(t); const hr=setAlarm(a,t);
  human.rotation.set(0,0,0); human.position.set(0,0,0);
- scene.background=new THREE.Color(shot.includes('bed')?'#06080E':(shot==='jungle'?'#22341F':'#0B140D')); scene.fog=shot.includes('jungle')?new THREE.FogExp2(0x1C2C1F,shot==='jungle'?.07:.16):new THREE.FogExp2(0x05070C,.08);
+ scene.background=new THREE.Color(shot==='traffic'?'#120E16':shot.includes('bed')?'#06080E':(shot==='jungle'?'#22341F':'#0B140D')); scene.fog=shot==='traffic'?new THREE.FogExp2(0x0E0C12,.035):shot.includes('jungle')?new THREE.FogExp2(0x1C2C1F,shot==='jungle'?.07:.16):new THREE.FogExp2(0x05070C,.08);
  let redTint=0;
  if(shot==='jungle'){
   const walkT=Math.min(t,3.85); const z=lerp(-3.2,-1.2,walkT/3.85); human.position.set(0,0,z);
@@ -273,17 +305,23 @@ window.render=function(t){
   $('tag').setAttribute('opacity',fade(t,.3,3.6,.3)); $('tagt').textContent='THE JUNGLE / REAL DANGER';
  } else if(shot==='xjungle'||shot==='xjungle2'){
   human.position.set(0,0,-1.2); buildBody(0,0,true); setXray(true,1);
-  const u=shot==='xjungle'?clamp((t-5)/4):.6; camera.position.set(lerp(.6,.35,u),lerp(1.45,1.32,u),-1.2+lerp(1.75,1.2,ease(u))); camera.lookAt(0,lerp(1.42,1.3,u),-1.2);
+  const u=shot==='xjungle'?clamp((t-5)/3.5):.6; camera.position.set(lerp(.6,.35,u),lerp(1.45,1.32,u),-1.2+lerp(1.75,1.2,ease(u))); camera.lookAt(0,lerp(1.42,1.3,u),-1.2);
   redTint=a*.12;
   $('tag').setAttribute('opacity',1); $('tagt').textContent='REAL DANGER';
  } else if(shot==='bed'||shot==='xbed'){
   human.rotation.x=-Math.PI/2; human.position.set(0,.66,.5); buildBody(0,0,true);
-  const xr=shot==='xbed'?1:clamp((t-11.0)/.8); setXray(xr>0.02,xr); duvetMat.opacity=1-xr*.8; duvetMat.depthWrite=xr<.5;
-  if(shot==='bed'){const u=clamp((t-9)/4.5);camera.position.set(lerp(1.7,1.45,u),lerp(2.3,2.1,u),lerp(.4,.15,u));camera.lookAt(0,.7,-.75);}
+  const xr=shot==='xbed'?1:clamp((t-10.5)/.8); setXray(xr>0.02,xr); duvetMat.opacity=1-xr*.8; duvetMat.depthWrite=xr<.5;
+  if(shot==='bed'){const u=clamp((t-8.5)/4);camera.position.set(lerp(1.7,1.45,u),lerp(2.3,2.1,u),lerp(.4,.15,u));camera.lookAt(0,.7,-.75);}
   else {camera.position.set(1.3,1.95,.0);camera.lookAt(0,.72,-.8);}
-  cards.forEach((c,i)=>{const a0=11.3+i*.35;const o=fade(t,a0,17,.4);c.visible=o>.01&&t<17;c.position.set(-.45+(i%2)*.85+Math.sin(t+i)*.03,.92+Math.floor(i/2)*.22+Math.sin(t*1.3+i)*.03,-.75+i*.1);c.lookAt(camera.position);c.scale.setScalar(.4+.6*ease(o));});
+  cards.forEach((c,i)=>{const a0=10.7+i*.3;const o=fade(t,a0,12.6,.3);c.visible=o>.01;c.position.set(-.45+(i%2)*.85+Math.sin(t+i)*.03,.92+Math.floor(i/2)*.22+Math.sin(t*1.3+i)*.03,-.75+i*.1);c.lookAt(camera.position);c.scale.setScalar(.4+.6*ease(o));});
   redTint=a*.12;
   $('tag').setAttribute('opacity',1); $('tagt').textContent=shot==='xbed'?'PERCEIVED DANGER':'2:47 AM / PERCEIVED DANGER';
+ } else if(shot==='traffic'){
+  human.position.set(0,-.45,0); human.rotation.y=Math.PI; buildBody(0,0,true,true);
+  const xr=clamp((t-13.5)/.9); setXray(xr>0.02,xr); seatB.visible=xr<.05;
+  const u=clamp((t-12.5)/6.9); camera.position.set(lerp(.62,.48,ease(u)),lerp(1.62,1.55,u),lerp(1.45,1.15,ease(u))); camera.lookAt(lerp(-.05,0,u),lerp(1.1,1.12,u),-1.6);
+  redTint=a*.1; tRed.intensity=2.5+Math.sin(t*3)*.6;
+  $('tag').setAttribute('opacity',1); $('tagt').textContent='8:52 AM / PERCEIVED DANGER';
  } else {$('tag').setAttribute('opacity',0);}
  grade.uniforms.uT.value=t*13.7; grade.uniforms.uRed.value=redTint;
  if(shot!=='end')composer.render(); else {renderer.setClearColor(0x050505);renderer.clear();}
@@ -292,14 +330,14 @@ window.render=function(t){
  const fl=u=>u>=0?Math.exp(-u*9):0; $('flash').setAttribute('opacity',Math.min(.85,fl(t-3.9)*.85+fl(t-4.22)*.6+fl(t-4.5)*.35).toFixed(3));
  const dOn=t>3.95&&t<5.0; const blink=dOn&&(Math.floor((t-3.95)/.16)%2==0||t>4.5); $('danger').setAttribute('opacity',dOn?(blink?fade(t,3.95,5.0,.06):.15):0);
  $('danger').setAttribute('transform',`translate(540 1470) scale(${1+.25*Math.exp(-(t-3.95)*10)*(t>3.95?1:0)}) translate(-540 -1470)`);
- const xr=shot.startsWith('x')||(shot==='bed'&&t>11.2);
+ const xr=shot.startsWith('x')||(shot==='bed'&&t>10.6)||(shot==='traffic'&&t>13.6);
  $('readout').setAttribute('opacity',xr?1:0); $('note').setAttribute('opacity',xr?1:0);
  $('hr').textContent=Math.round(hr); $('hr').setAttribute('fill',a>.5?'#FF5A48':'#F2EDE4');
  bars.forEach((arr,k)=>arr.forEach((r,j)=>r.setAttribute('fill',j<Math.round(lerp(1+k,9,a))?(a>.5?'#FF4A38':'#6E8A3A'):'#3A3732')));
- labelDefs.forEach(([n,obj,[dx,dy]],i)=>{const g=labelEls[i];const vis=xr&&shot!=='xbed'&&shot!=='bed';g.setAttribute('opacity',vis?1:0);if(!vis)return;const wp=new THREE.Vector3();obj.getWorldPosition(wp);wp.project(camera);const x=(wp.x*.5+.5)*W,y=(-wp.y*.5+.5)*H;
+ labelDefs.forEach(([n,obj,[dx,dy]],i)=>{const g=labelEls[i];const vis=xr&&shot!=='xbed'&&shot!=='bed'&&shot!=='traffic';g.setAttribute('opacity',vis?1:0);if(!vis)return;const wp=new THREE.Vector3();obj.getWorldPosition(wp);wp.project(camera);const x=(wp.x*.5+.5)*W,y=(-wp.y*.5+.5)*H;
   const ln=g.querySelector('line'),c=g.querySelector('circle'),tx=g.querySelector('text');ln.setAttribute('x1',x);ln.setAttribute('y1',y);ln.setAttribute('x2',x+dx);ln.setAttribute('y2',y+dy);c.setAttribute('cx',x);c.setAttribute('cy',y);tx.setAttribute('x',x+dx+10);tx.setAttribute('y',y+dy+8);tx.textContent=n;});
- $('stamp').setAttribute('opacity',t>13.6&&t<17?1:0); $('stamp').setAttribute('transform',`translate(540 1415) scale(${1+.12*Math.max(0,1-(t-13.6)/.25)}) translate(-540 -1415)`);
- $('endc').setAttribute('opacity',clamp((t-17)/.3)); $('endbar').setAttribute('width',480*lerp(.5,.06,clamp((t-17.2)/1.6))); $('cta').setAttribute('opacity',clamp((t-18.3)/.4));
+ const st0=t<16.6?15.0:16.6; $('stamp').setAttribute('opacity',t>15.0&&t<19.3?1:0); $('stampt').textContent=t<16.6?'SAME ALARM':'SAME STRESS'; $('stamp').setAttribute('transform',`translate(540 1415) scale(${1+.12*Math.max(0,1-(t-st0)/.25)}) translate(-540 -1415)`);
+ $('endc').setAttribute('opacity',clamp((t-19.4)/.3)); $('endbar').setAttribute('width',480*lerp(.5,.06,clamp((t-19.6)/1.8))); $('cta').setAttribute('opacity',clamp((t-20.9)/.4));
 };
 await document.fonts.ready; window.render(0); window.ready=true;
 </script></body></html>
