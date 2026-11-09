@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A quick form to fill in before your free 15-minute call with Mason.">
+<title>Before Our Call</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/hero.jpg">
+<meta name="theme-color" content="#4A5A2E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mason Havenstein Wellness">
+<meta property="og:title" content="Before Our Call">
+<meta property="og:description" content="A quick form to fill in before your free 15-minute call with Mason.">
+<meta property="og:url" content="https://masonhealthcoach.github.io/precall/">
+<meta property="og:image" content="https://masonhealthcoach.github.io/img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+
+:root{
+  --bg:#F2ECE1; --surface:#FBF8F2; --fg:#231E19; --muted:#6B6157; --line:#DCD2C2;
+  --gum:#4A5A2E; --gum-ink:#FBF8F2; --ochre:#7E2232;
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#171410; --surface:#211C16; --fg:#EDE6DA; --muted:#A89E90; --line:#3A3229;
+  --gum:#B4C08A; --gum-ink:#171410; --ochre:#D9A86A; color-scheme:dark }
+
+*{box-sizing:border-box} html,body{margin:0} [hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance}
+h1{font-size:clamp(54px,15vw,92px);text-transform:uppercase}
+h1 em{font-style:normal;color:var(--ochre)}
+h2{font-size:clamp(34px,9vw,46px);text-transform:uppercase}
+p{margin:0;max-width:62ch}
+.lede{font-size:20px;line-height:1.5}
+.muted{color:var(--muted)}
+.actions{display:flex;flex-direction:column;gap:12px}
+.btn{border-radius:999px;padding:18px 26px;min-height:56px;font:700 17px/1 var(--body);text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;background:var(--gum);color:var(--gum-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.btn:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.who{display:flex;gap:8px;flex-wrap:wrap}
+.who span{border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+
+.story{border-left:3px solid var(--ochre);padding-left:18px;display:flex;flex-direction:column;gap:14px}
+.pull{font-family:var(--display);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.05;text-transform:uppercase;color:var(--gum)}
+
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillar strong{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1}
+.pillar p{font-size:15px;color:var(--muted)}
+
+.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.list li:first-child{border-top:1px solid var(--line)}
+.list b{font-weight:700}
+.list span{color:var(--muted);text-align:right;font-size:15px}
+
+.cta{background:var(--gum);color:var(--gum-ink);border-radius:22px;padding:28px 22px;display:flex;flex-direction:column;gap:14px}
+.cta h2{color:var(--gum-ink)}
+.cta .btn{background:var(--gum-ink);color:var(--gum)}
+.cta .btn.ghost{background:transparent;color:var(--gum-ink);border-color:currentColor}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+
+.phases{display:flex;flex-direction:column;gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;min-width:0}
+.phase .wk{grid-row:span 3;font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;color:var(--ochre);text-transform:uppercase}
+.phase strong{font-family:var(--display);font-size:28px;font-weight:800;text-transform:uppercase;line-height:1}
+.phase small{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phase p{font-size:15px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-family:var(--display);font-weight:900;font-size:clamp(64px,18vw,96px);line-height:.9;color:var(--gum-ink)}
+.price span{font-weight:600}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ticks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.ticks li::before{content:"";width:12px;height:12px;margin-top:7px;border-radius:50%;background:var(--ochre)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--ochre)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted)}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+legend{padding:0;margin-bottom:6px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field>label,.field>.q{font-weight:600;font-size:16px}
+.field .hint{font-size:14px;color:var(--muted);font-weight:400}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field textarea{font:500 17px/1.4 var(--body);color:var(--fg);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:15px;cursor:pointer;background:var(--surface)}
+.choices input{accent-color:var(--gum);margin:0}
+.choices label:has(input:checked){border-color:var(--gum);box-shadow:inset 0 0 0 1.5px var(--gum)}
+.choices label:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:2px}
+.scale{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center}
+.scale .choices{flex-wrap:nowrap}
+.scale .choices label{padding:8px 12px}
+@media (max-width:440px){.scale{grid-template-columns:1fr}}
+.sec{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.sec h2{font-size:clamp(30px,8vw,40px)}
+.agree{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:15px}
+.agree input{width:20px;height:20px;accent-color:var(--gum);margin-top:3px}
+.err{color:#C0502F;font-weight:600;font-size:15px}
+.ok{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.legal h2{font-size:clamp(24px,6vw,30px)}
+.legal ol,.legal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:62ch}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700}
+.nav a{color:var(--fg);text-decoration:none}
+.nav a.brand{font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--gum)}
+button.btn{border:0;cursor:pointer}
+button.btn:disabled{opacity:.6;cursor:wait}
+</style>
+</head><body>
+<main class="wrap">
+<nav class="nav"><a class="brand" href="../">Mason</a><a href="../tired/">Take the quiz</a></nav>
+
+<section>
+  <span class="eyebrow">Before your free call · About 3 minutes</span>
+  <h1 style="font-size:clamp(48px,13vw,80px)">Before <em>our call</em></h1>
+  <p class="lede">A few quick questions so I know what's going on before we chat. Most are just a tap. Answer honestly, there are no wrong answers, and it means we spend the 15 minutes on you instead of the basics.</p>
+</section>
+<form id="precall" novalidate>
+  <div id="sections" style="display:flex;flex-direction:column;gap:56px"></div>
+  <section class="sec" style="margin-top:56px">
+    <h2>Last bit</h2>
+    <label class="agree" for="agree"><input type="checkbox" id="agree" name="agree"><span>I understand this is general wellness coaching, not medical advice, and I'm happy for Mason to keep these answers to prepare for our call (see the <a href="../privacy/" target="_blank" style="color:inherit">privacy policy</a>).</span></label>
+    <p class="err" id="err" hidden></p>
+    <button class="btn" type="submit" id="send">Send my answers →</button>
+  </section>
+</form>
+<section class="ok" id="done" hidden>
+  <h2>Got it, thanks</h2>
+  <p>I'll read through this before we talk, so we can get straight into it.</p>
+  <p id="bookline">Haven't booked a time yet? Grab one below. Calls are Monday to Wednesday.</p>
+  <a class="btn" data-call href="https://ig.me/m/mason_havenstein_wellness">Book my free 15-min call</a>
+  <a class="btn ghost" href="../">Back to home</a>
+</section>
+
+<footer class="foot"><span>Mason Havenstein Wellness · Mona Vale, Northern Beaches</span><span>Holistic lifestyle coaching. Not medical advice. <a href="../agreement/" style="color:inherit">Coaching agreement</a> · <a href="../privacy/" style="color:inherit">Privacy</a> · <a href="../terms/" style="color:inherit">Terms</a></span></footer>
+</main>
+<script>
+const WEB3FORMS_KEY = "75b67772-c155-457c-9c59-15891a043302";
+// type: t=text, e=email, p=phone, l=long text, c=single choice, m=multiple choice
+const S = [
+ ["About you", [
+  ["name","Name","t",null,1],
+  ["email","Email","e",null,1],
+  ["phone","Mobile or WhatsApp","p","Optional"],
+  ["booked","Have you booked your call yet?","c",["Yes, it's booked","Not yet"]],
+  ["age","Age","c",["Under 20","20s","30s","40s","50s","60+"]],
+  ["work","What does a normal work day look like for you?","c",["On the tools or physical work","Desk or office","Shift work or nights","Driving","At home with kids","Studying","Not working right now"]]
+ ]],
+ ["What's going on", [
+  ["focus","What do you want help with most?","m",["Always tired","Crashing in the arvo","Can't switch off at night","Sleep","Gut, bloating or reflux","Losing weight","Putting on weight or muscle","Stress or anxiety","Low mood or motivation","Sugar or energy drink cravings","Hormones or sex drive","Getting back on track after being unwell"]],
+  ["story","In a sentence or two, what's been going on?","l","No need for the full story, we'll get into it on the call"],
+  ["howlong","How long has it been like this?","c",["A few weeks","A few months","1 to 3 years","More than 3 years","As long as I can remember"]],
+  ["win","If we sorted this out, what would be different for you in 3 months?","l","e.g. Wake up ready to go, get through work without Monsters, play with the kids after work"]
+ ]],
+ ["Your day right now", [
+  ["energy","Your energy most days, out of 10","c",["1 to 2","3 to 4","5 to 6","7 to 8","9 to 10"]],
+  ["sleep","Hours of sleep most nights","c",["Under 5","5 to 6","6 to 7","7 to 8","8 or more"]],
+  ["rested","Do you wake up feeling rested?","c",["Yes","Sometimes","Rarely","Never"]],
+  ["meals","How many proper meals a day?","c",["1","2","3","More than 3","It's all over the place"]],
+  ["caffeine","Coffees or energy drinks a day","c",["None","1","2","3","4 or more"]],
+  ["alcohol","Alcohol in a normal week","c",["None","1 to 4 drinks","5 to 10","11 or more"]],
+  ["move","How often do you train or go for a walk on purpose?","c",["Hardly ever","1 to 2 days a week","3 to 4 days","5 or more days"]],
+  ["stress","Stress out of 10","c",["1 to 2","3 to 4","5 to 6","7 to 8","9 to 10"]],
+  ["gut","Bloating, gas, reflux or irregular toilet trips?","c",["Never","Sometimes","Often","Most days"]]
+ ]],
+ ["Getting started", [
+  ["tried","What have you already tried?","m",["Diets","Supplements","Cutting out coffee or alcohol","A personal trainer or gym program","My GP","A naturopath or other practitioner","Nothing yet"]],
+  ["gp","Anything a doctor has diagnosed, or medication you take, that I should know about?","t","Optional"],
+  ["ready","How ready are you to make some changes, out of 10?","c",["1 to 4","5 to 6","7 to 8","9 to 10"]],
+  ["invest","If we're a good fit, is coaching something you could invest in right now?","c",["Yes, if it's the right fit","Maybe, I'd want to know more","Just exploring for now"]],
+  ["found","How did you find me?","c",["Instagram","One of the quizzes","A mate","TikTok or Facebook","Other"]]
+ ]]
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const box=document.getElementById("sections");
+box.innerHTML=S.map(([title,qs],si)=>`<fieldset class="sec"><legend><span class="eyebrow">Part ${si+1} of ${S.length}</span><h2>${esc(title)}</h2></legend>${qs.map(q=>field(q)).join("")}</fieldset>`).join("");
+function field([id,label,type,opt,req]){
+  const hint=(typeof opt==="string")?`<span class="hint">${esc(opt)}</span>`:"";
+  const star=req?" *":"";
+  if(type==="t"||type==="e"||type==="p"){const it=type==="e"?"email":type==="p"?"tel":"text";const ac=id==="name"?' autocomplete="name"':id==="email"?' autocomplete="email"':id==="phone"?' autocomplete="tel"':"";
+    return `<div class="field"><label for="f_${id}">${esc(label)}${star}</label>${hint}<input id="f_${id}" name="${id}" type="${it}"${ac}></div>`;}
+  if(type==="l") return `<div class="field"><label for="f_${id}">${esc(label)}</label>${hint}<textarea id="f_${id}" name="${id}"></textarea></div>`;
+  if(type==="c"||type==="m"){const it=type==="c"?"radio":"checkbox";
+    return `<div class="field" role="group" aria-labelledby="q_${id}"><span class="q" id="q_${id}">${esc(label)}${type==="m"?' <span class="hint">(tick any)</span>':""}</span><div class="choices">${opt.map((o,i)=>`<label for="f_${id}_${i}"><input type="${it}" id="f_${id}_${i}" name="${id}" value="${esc(o)}">${esc(o)}</label>`).join("")}</div></div>`;}
+  if(type==="s") return `<div class="field"><span class="q">${esc(label)}</span><div class="scale">${opt.map((o,i)=>`<span>${esc(o)}</span><div class="choices" role="group" aria-label="${esc(o)}">${[0,1,2,3].map(n=>`<label for="f_bc${i}_${n}"><input type="radio" id="f_bc${i}_${n}" name="bc${i}" value="${n}">${n}</label>`).join("")}</div>`).join("")}</div></div>`;
+}
+const LABELS={};S.forEach(([t,qs])=>qs.forEach(q=>LABELS[q[0]]=q[1]));
+document.getElementById("precall").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target, err=document.getElementById("err");
+  const name=f.name.value.trim(), email=f.email.value.trim();
+  const fail=m=>{err.textContent=m;err.hidden=false;err.scrollIntoView({block:"center"})};
+  if(!name) return fail("Pop your name in at the top.");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Your email doesn't look right. Check it at the top.");
+  if(!document.getElementById("agree").checked) return fail("Tick the box at the bottom so I can keep your answers.");
+  err.hidden=true;
+  const fd=new FormData(f), out={};
+  for(const [k] of Object.entries(LABELS)){ if(k==="_scale") continue; const v=fd.getAll(k).filter(Boolean).join(", "); out[LABELS[k]]=v||"-"; }
+  const btn=document.getElementById("send"); btn.disabled=true; btn.textContent="Sending…";
+  try{
+    const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify(Object.assign({access_key:WEB3FORMS_KEY,subject:`Pre-call form: ${name}`,from_name:"Before Our Call",name,email,replyto:email},out))});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success===false) throw new Error(j.message||"Send failed");
+    f.hidden=true; document.getElementById("done").hidden=false; if(fd.get("booked")==="Yes, it's booked") document.getElementById("bookline").textContent="See you on the call. If you need to change the time, use the link in your booking email."; window.scrollTo(0,0);
+  }catch(x){ btn.disabled=false; btn.textContent="Send my answers →"; fail("That didn't send. Check your internet and try again. If it keeps failing, DM me on Instagram @mason_havenstein_wellness."); }
+};
+</script>
+<script src="../assets/links.js"></script>
+</body></html>
