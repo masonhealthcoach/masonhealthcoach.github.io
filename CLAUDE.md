@@ -118,7 +118,7 @@ Handover for Claude Code. This file covers who Mason is, what the business is, w
 
 | Path | What it is |
 | --- | --- |
-| `/` | Homepage: hero photo (Mason and the dogs), short story, 3 quiz cards (`#quizzes`), four pillars, photos, pill artwork above the offer, 12 weeks / $299, credentials, CTA |
+| `/` | Homepage (tidied 10 Nov 2026): hero photo (Mason and the dogs), short story with dog-and-water photo and a handwritten "Mason" sign-off (Caveat font), 3 quiz cards (`#quizzes`, no numbers), four things as a plain list, kitchen dog photo, 12 weeks / $299, credentials, CTA. Few eyebrow labels; pill artwork and chair photo removed |
 | `/about/` | Full story in chapters (Never fit the mould → Watching my dad go → Going off the rails → The day it broke → great white quote → Ryan photo → Then I met Ryan → Rebuilding from empty → Why I coach) plus a Lifeline line |
 | `/tired/` | **Main energy quiz**, "Wired, burnt out or just flat?" Ten questions. Types: Wired / Crashing / Burnt Out / Flat (DM words WIRED / CRASH / BURNT / FLAT) |
 | `/food/` | Body-type quiz: Ayurveda underneath, shown as **Air Type / Fire Type / Earth Type** (vata / pitta / kapha). Names appear only on the results. Ten questions plus a goal question (lose / maintain / gain) that shows Cabral's plate for that goal. DM words AIR / FIRE / EARTH |
